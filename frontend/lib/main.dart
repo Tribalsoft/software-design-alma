@@ -1,4 +1,4 @@
-import 'package:design_alma/home/pages/homepage.dart';
+import 'package:design_alma/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,6 +10,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appRoute = AppRoute();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Mi App',
@@ -17,7 +19,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      initialRoute: '/',
+      routes: appRoute.routes,
     );
   }
 }

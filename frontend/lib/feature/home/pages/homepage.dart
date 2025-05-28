@@ -15,15 +15,12 @@ class HomePage extends StatelessWidget {
     return BlocProvider(
       create: (_) => HomeBloc()..add(LoadProducts()),
       child: Scaffold(
-        appBar: AppBar(title: const Text("Productos nuevos")),
         body: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
             if (state is HomeLoading) {
               return const HomeLoadingView();
-
             } else if (state is HomeLoaded) {
               return HomeView(products: state.products);
-              
             } else if (state is HomeError) {
               return HomeErrorView(
                 message: state.message,
