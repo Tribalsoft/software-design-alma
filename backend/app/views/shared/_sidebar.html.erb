@@ -1,4 +1,4 @@
-<nav id="sidebar" class="background-panel-admin text-dark vh-100 p-3" style="width: 250px;">
+<nav id="sidebar" class="background-panel-admin text-dark vh-100 p-3">
   <div class="d-flex flex-column h-100">
     <a href="<%= admin_dashboard_path %>" class="text-decoration-none mb-4 d-flex align-items-center">
       <i data-feather="activity" class="me-2"></i>
@@ -8,7 +8,7 @@
     <ul class="nav nav-pills flex-column mb-auto">
 
       <%# Desplazable de vista general  %>
-      <% is_overview_active = current_page?(admin_dashboard_path) || current_page?(admin_users_path) %>
+      <% is_overview_active = current_page?(admin_dashboard_path) || current_page?(admin_users_path) || current_page?(admin_categories_path)%>
       <li class="nav-item">
         <a 
           class="nav-link text-h1-panel-admin d-flex align-items-center" 
@@ -33,9 +33,16 @@
             <% end %>
 
             <%= link_to admin_users_path, class: "text-decoration-none" do %>
-              <li class="bg-text-icon d-flex align-items-center <%= 'active' if current_page?(admin_users_path) %>">
+              <li class="bg-text-icon mb-2 d-flex align-items-center <%= 'active' if current_page?(admin_users_path) %>">
                 <img src="<%= asset_path('admins/ic-user.svg') %>" class="text-icon me-2">
                 <span class="text-h2-panel-admin"><%= t("users") %></span>
+              </li>
+            <% end %>
+
+            <%= link_to admin_categories_path, class: "text-decoration-none" do %>
+              <li class="bg-text-icon mb-2 d-flex align-items-center <%= 'active' if current_page?(admin_categories_path) %>">
+                <img src="<%= asset_path('admins/ic-user.svg') %>" class="text-icon me-2">
+                <span class="text-h2-panel-admin"><%= t("categories") %></span>
               </li>
             <% end %>
           </ul>
@@ -57,3 +64,25 @@
     </div>
   </div>
 </nav>
+
+<div id="backdrop" class="sidebar-backdrop"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('sidebarToggle');
+    const backdrop = document.getElementById('backdrop');
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+        backdrop.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
+      });
+    }
+
+    backdrop.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+      backdrop.style.display = 'none';
+    });
+  });
+</script>

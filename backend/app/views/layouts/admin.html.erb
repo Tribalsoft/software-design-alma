@@ -19,14 +19,19 @@
   </head>
 
   <body>
-      <div class="container-fluid">
-        <div class="row">
-            <%= render 'shared/sidebar' %>
-          <div class="col-md-9 col-lg-10 p-4">
-            <%= render 'shared/form_exited', object: @category %>
-            <%= yield %>
-          </div>
-        </div>
+    <header class="d-flex d-lg-none align-items-center p-2 bg-light border-bottom">
+      <button class="btn btn-outline-secondary" id="sidebarToggle">
+        <i data-feather="menu"></i>
+      </button>
+      <span class="ms-2 fs-5 fw-bold">TechNova Solutions</span>
+    </header>
+
+    <div class="d-flex">
+      <%= render 'shared/sidebar' %>
+
+      <div id="main-content" class="flex-grow-1 p-3">
+        <%= yield %>
       </div>
-    </body>
+    </div>
+  </body>
 </html>
