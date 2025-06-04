@@ -1,10 +1,12 @@
 <!DOCTYPE html>
+<html lang="es">
 <html>
   <head>
     <title>Admin | Diseños Alma</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag 'admin', media: 'all' %>
     <%= javascript_include_tag 'application' %>
 
     <link rel="icon" href="/icon.png" type="image/png">
@@ -19,9 +21,7 @@
   <body>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-3 col-lg-2 bg-dark text-white min-vh-100 p-0">
             <%= render 'shared/sidebar' %>
-          </div>
           <div class="col-md-9 col-lg-10 p-4">
             <%= render 'shared/form_exited', object: @category %>
             <%= yield %>
