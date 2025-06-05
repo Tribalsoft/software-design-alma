@@ -1,7 +1,6 @@
 <h1 class="mb-4 fw-bold text-center">Panel de Administración</h1>
 
 <div class="my-container">
-
   <!-- Primera caja -->
   <div class="my-box my-box-large p-5">
       <div>
@@ -34,6 +33,14 @@
     </div>
   </div>
 </div>
+
+<h2>Usuarios registrados por mes (<%= Date.current.year %>)</h2>
+
+<canvas id="usuariosChart" width="600" height="300"
+        data-labels='<%= @labels.to_json.html_safe %>'
+        data-values='<%= @usuarios_por_mes.to_json.html_safe %>'>
+</canvas>
+
 
   <!-- Otra seccion -->
 
