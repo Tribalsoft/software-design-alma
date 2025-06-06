@@ -143,3 +143,5 @@ es:
   message_help_1: ¡Bienvenido a tu panel de administración! Si tienes alguna duda,
   message_help_2: estamos aquí para ayudarte.
   go_now: Ir ahora
+  total_active_users: Usuarios activos totales
+  last_7_days: Últimos 7 días

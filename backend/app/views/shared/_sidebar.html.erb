@@ -18,8 +18,8 @@
           aria-expanded="<%= is_overview_active %>" 
           aria-controls="overviewSubmenu"
         >
-          <span>
-            <i data-feather="home"></i> <%= t("overview") %>
+          <span class="fs-7 text-uppercase">
+            <%= t("overview") %>
           </span>
         </a>
 
@@ -66,23 +66,3 @@
 </nav>
 
 <div id="backdrop" class="sidebar-backdrop"></div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const sidebar = document.getElementById('sidebar');
-    const toggleBtn = document.getElementById('sidebarToggle');
-    const backdrop = document.getElementById('backdrop');
-
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', () => {
-        sidebar.classList.toggle('active');
-        backdrop.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
-      });
-    }
-
-    backdrop.addEventListener('click', () => {
-      sidebar.classList.remove('active');
-      backdrop.style.display = 'none';
-    });
-  });
-</script>
