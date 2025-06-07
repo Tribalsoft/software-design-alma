@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Alma App',
+      title: 'DesignAlma App',
       home: HomeScreen(
         categoryRepository: categoryRepository,
       ),
@@ -36,20 +36,20 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Pantalla Principal')),
+      appBar: AppBar(title: const Text('Home')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              child: const Text('Ver categorías'),
+              child: const Text('Ver Productos'),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (_) => BlocProvider(
                       create: (_) =>
-                          CategoryBloc(categoryRepository)..add(LoadCategories()),
+                          CategoryBloc(categoryRepository)..add(LoadProducts()),
                       child: const CategoryScreen(),
                     ),
                   ),

@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
-import '../../models/category.dart';
-
+import '../models/category_model.dart'; // Aquí está la clase Product
 
 class CategoryRepository {
-  final String apiUrl = 'https://run.mocky.io/v3/01b8f729-fa09-4046-813c-c8fc767bc51a'; // Reemplaza con tu Mocky URL
+  // Reemplaza esto con TU URL de Mocky
+  final String _baseUrl = 'https://run.mocky.io/v3/fb57fa33-e4eb-4893-b6fd-a947edede8e5';
 
-  Future<List<Category>> getCategories() async {
-    final response = await http.get(Uri.parse(apiUrl));
+  Future<List<Product>> getProducts() async {
+    final response = await http.get(Uri.parse(_baseUrl));
+
     if (response.statusCode == 200) {
-      final List data = json.decode(response.body);
-      return data.map((json) => Category.fromJson(json)).toList();
+      final List<dynamic> data = jsonDecode(response.body);
+      return data.map((item) => Product.fromJson(item)).toList();
     } else {
-      throw Exception('Error al obtener categorías');
+      throw Exception('Error al cargar productos');
     }
   }
 }
