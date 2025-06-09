@@ -37,4 +37,25 @@ class CartItemsController < ApplicationController
     @cart = current_cart
     @items = @cart.cart_items.includes(:product)
   end
+
+  def update_quantity
+  @cart_item = CartItem.find(params[:id])
+  new_quantity = params[:quantity].to_i
+
+  if new_quantity > 0
+    @cart_item.update(quantity: new_quantity)
+  else
+    @cart_item.destroy
+  end
+
+  respond_to do |format|
+    format.turbo_stream do
+      render turbo_stream: turbo_stream.replace(@cart_item,
+        partial: "cart_items/cart_item", locals: { item: @cart_item })
+    end
+    format.html { redirect_to cart_path }
+  end
+end
+  
+
 end
