@@ -13,19 +13,19 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => HomeBloc()..add(LoadProducts()),
+      create: (_) => HomeBloc()..add(LoadCategories()),
       child: Scaffold(
         body: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
             if (state is HomeLoading) {
               return const HomeLoadingView();
             } else if (state is HomeLoaded) {
-              return HomeView(products: state.products);
+              return HomeView(categories: state.categories);
             } else if (state is HomeError) {
               return HomeErrorView(
                 message: state.message,
                 onRetry: () {
-                  context.read<HomeBloc>().add(LoadProducts());
+                  context.read<HomeBloc>().add(LoadCategories());
                 },
               );
             }

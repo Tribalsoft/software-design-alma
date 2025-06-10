@@ -1,3 +1,3 @@
 abstract class HomeEvent {}
 
-class LoadProducts extends HomeEvent {}
+class LoadCategories extends HomeEvent {}

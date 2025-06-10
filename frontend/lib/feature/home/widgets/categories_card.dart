@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import '../models/product_model.dart';
+import '../models/categories_model.dart';
 
-class ProductCard extends StatelessWidget {
-  final Product product;
+class CategoriesCard extends StatelessWidget {
+  final Categories categories;
 
-  const ProductCard({super.key, required this.product});
+  const CategoriesCard({super.key, required this.categories});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       child: ListTile(
-        title: Text(product.name, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
+        title: Text(categories.name,
+            style: const TextStyle(fontWeight: FontWeight.bold)),
         leading: const Icon(Icons.shopping_bag),
         onTap: () {
           // Aquí podrías agregar la lógica para ver detalle o añadir al carrito

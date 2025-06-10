@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../models/product_model.dart';
-import '../widgets/product_card.dart';
+import '../models/categories_model.dart';
+import '../widgets/categories_card.dart';
 
 class HomeView extends StatelessWidget {
-  final List<Product> products;
+  final List<Categories> categories;
 
-  const HomeView({super.key, required this.products});
+  const HomeView({super.key, required this.categories});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +14,9 @@ class HomeView extends StatelessWidget {
       children: [
         Expanded(
           child: ListView.builder(
-            itemCount: products.length,
+            itemCount: categories.length,
             itemBuilder: (context, index) {
-              return ProductCard(product: products[index]);
+              return CategoriesCard(categories: categories[index]);
             },
           ),
         ),

@@ -1,4 +1,4 @@
-import '../models/product_model.dart';
+import '../models/categories_model.dart';
 
 abstract class HomeState {}
 
@@ -7,9 +7,9 @@ class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState {}
 
 class HomeLoaded extends HomeState {
-  final List<Product> products;
+  final List<Categories> categories;
 
-  HomeLoaded(this.products);
+  HomeLoaded(this.categories);
 }
 
 class HomeError extends HomeState {
