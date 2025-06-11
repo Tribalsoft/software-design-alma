@@ -12,7 +12,7 @@ class CategoryScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blue[50],
       appBar: AppBar(
-        title: const Text('Categorías'),
+        title: const Text('Productos'),
         backgroundColor: Colors.blue[400],
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),

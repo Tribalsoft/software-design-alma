@@ -19,7 +19,7 @@ class _MainScaffoldState extends State<MainScaffold> {
 
   final List<Widget> _pages = [
     HomeScreen(categoryRepository: CategoryRepository(),),
-    const Placeholder(),
+    const HomePage(),
     const Placeholder(),
     const Placeholder(),
     const ProfilePage(),

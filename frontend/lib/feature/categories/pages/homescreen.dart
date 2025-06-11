@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              child: const Text('Ver Categorías'),
+              child: const Text('Ver Productos'),
               onPressed: () {
                 Navigator.push(
                   context,
