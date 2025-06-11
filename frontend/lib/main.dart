@@ -1,6 +1,8 @@
 import 'package:design_alma/routes/routes.dart';
 import 'package:flutter/material.dart';
 
+import 'feature/categories/repositories/category_repository.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -8,16 +10,15 @@ void main() {
 class MyApp extends StatelessWidget {
   final CategoryRepository categoryRepository = CategoryRepository();
 
+  MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     final appRoute = AppRoute();
 
     return MaterialApp(
       title: 'DesignAlma App',
-      home: HomeScreen(
-        categoryRepository: categoryRepository,
-      ),
-      initialRoute: '/',
+      initialRoute: AppRoute.home,
       routes: appRoute.routes,
     );
   }
