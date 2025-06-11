@@ -27,11 +27,23 @@ class CartItemsController < ApplicationController
   
 
   def destroy
-    item = current_cart.cart_items.find(params[:id])
-    item.destroy
-    flash[:item_added] = true # 🔥 Aquí
-    redirect_back fallback_location: root_path
+  item = current_cart.cart_items.find(params[:id])
+  item_id = item.id
+  item.destroy
+  flash[:item_added] = true
+
+  respond_to do |format|
+    format.turbo_stream do
+      render turbo_stream: [
+        turbo_stream.remove("cart_item_#{item_id}"),
+        turbo_stream.replace("cart_count", partial: "shared/cart_count"),
+        turbo_stream.replace("total_price", partial: "shared/total_price")
+      ]
+    end
+    format.html { redirect_back fallback_location: root_path }
+    end
   end
+
 
   def show
     @cart = current_cart
@@ -49,11 +61,8 @@ class CartItemsController < ApplicationController
   end
 
   respond_to do |format|
-    format.turbo_stream do
-      render turbo_stream: turbo_stream.replace(@cart_item,
-        partial: "cart_items/cart_item", locals: { item: @cart_item })
-    end
-    format.html { redirect_to cart_path }
+    format.turbo_stream
+    format.html { redirect_to root_path }
   end
 end
   
