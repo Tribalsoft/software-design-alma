@@ -3,7 +3,7 @@ import 'package:design_alma/blocs/category/category_event.dart';
 import 'package:design_alma/blocs/screens/category_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'blocs/screens/home_screen.dart';
 import 'blocs/repositories/category_repository.dart';
 
 

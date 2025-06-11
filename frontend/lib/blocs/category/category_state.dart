@@ -1,31 +1,17 @@
-import 'package:equatable/equatable.dart';
-import '../models/category_model.dart'; // Aquí el modelo es Product
+import '../models/category_model.dart';
 
-abstract class CategoryState extends Equatable {
-  const CategoryState();
-
-  @override
-  List<Object?> get props => [];
-}
+abstract class CategoryState {}
 
 class CategoryInitial extends CategoryState {}
 
 class CategoryLoading extends CategoryState {}
 
 class CategoryLoaded extends CategoryState {
-  final List<Product> products;
-
-  const CategoryLoaded(this.products);
-
-  @override
-  List<Object?> get props => [products];
+  final List<CategoryModel> categories;
+  CategoryLoaded(this.categories);
 }
 
 class CategoryError extends CategoryState {
   final String message;
-
-  const CategoryError(this.message);
-
-  @override
-  List<Object?> get props => [message];
+  CategoryError(this.message);
 }

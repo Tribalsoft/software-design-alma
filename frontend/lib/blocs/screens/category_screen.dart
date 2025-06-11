@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../models/category_model.dart';
 import '../category/category_bloc.dart';
-import '../category/category_event.dart';
 import '../category/category_state.dart';
+import '../category/category_event.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key});
@@ -10,52 +11,59 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Productos')),
+      backgroundColor: Colors.blue[50],
+      appBar: AppBar(
+        title: const Text('Productos'),
+        backgroundColor: Colors.blue[400],
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
       body: BlocBuilder<CategoryBloc, CategoryState>(
         builder: (context, state) {
           if (state is CategoryLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is CategoryLoaded) {
-            final products = state.products;
+            final List<CategoryModel> categories = state.categories;
             return Padding(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(8.0),
               child: GridView.builder(
-                itemCount: products.length,
+                itemCount: categories.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // dos columnas
-                  crossAxisSpacing: 12,
+                  crossAxisCount: 2,
                   mainAxisSpacing: 12,
-                  childAspectRatio: 3 / 4, // ajustar forma de la tarjeta
+                  crossAxisSpacing: 12,
+                  childAspectRatio: 0.85,
                 ),
                 itemBuilder: (context, index) {
-                  final product = products[index];
+                  final category = categories[index];
                   return Card(
-                    elevation: 4,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
+                    elevation: 4,
+                    color: Colors.white,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Expanded(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(16),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
                             child: Image.network(
-                              product.imageUrl,
-                              fit: BoxFit.cover,
-                              width: double.infinity,
+                              category.imageUrl,
                               errorBuilder: (context, error, stackTrace) =>
-                                  const Icon(Icons.image_not_supported, size: 50),
+                                  const Icon(Icons.broken_image, size: 48),
                             ),
                           ),
                         ),
                         const SizedBox(height: 8),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: Text(
-                            product.name,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center,
+                        Text(
+                          category.name,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -67,8 +75,9 @@ class CategoryScreen extends StatelessWidget {
             );
           } else if (state is CategoryError) {
             return Center(child: Text(state.message));
+          } else {
+            return const Center(child: Text('Algo salió mal.'));
           }
-          return const SizedBox.shrink();
         },
       ),
     );
