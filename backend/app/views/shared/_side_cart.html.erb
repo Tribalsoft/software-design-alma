@@ -53,7 +53,7 @@
       }, 300);
     }
 
-    // Eliminar duplicados antes de volver a asignar
+    // Previene múltiples listeners
     document.querySelectorAll("#side-cart form").forEach(form => {
       form.removeEventListener("submit", showCartLoadingBar);
       form.addEventListener("submit", showCartLoadingBar);
@@ -68,7 +68,7 @@
     document.addEventListener("turbo:submit-end", hideCartLoadingBar);
   }
 
-  document.addEventListener("turbo:load", () => {
+  function attachCartToggleEvents() {
     const cartToggle = document.getElementById("cart-toggle");
     const cartToggleXL = document.getElementById("cart-toggle-xl");
     const cartClose = document.getElementById("cart-close");
@@ -88,17 +88,40 @@
       }, 300);
     }
 
-    if (cartToggle) cartToggle.addEventListener("click", openCart);
-    if (cartToggleXL) cartToggleXL.addEventListener("click", openCart);
-    if (cartClose) cartClose.addEventListener("click", closeCart);
+    if (cartToggle) {
+      cartToggle.removeEventListener("click", openCart);
+      cartToggle.addEventListener("click", openCart);
+    }
+
+    if (cartToggleXL) {
+      cartToggleXL.removeEventListener("click", openCart);
+      cartToggleXL.addEventListener("click", openCart);
+    }
+
+    if (cartClose) {
+      cartClose.removeEventListener("click", closeCart);
+      cartClose.addEventListener("click", closeCart);
+    }
 
     const itemAddedMeta = document.querySelector('meta[name="cart-item-added"]');
     if (itemAddedMeta && itemAddedMeta.content === "true") {
       openCart();
     }
+  }
 
-    attachCartListeners(); // Ejecutar al cargar la página
+  // Inicial al cargar la página
+  document.addEventListener("turbo:load", () => {
+    attachCartListeners();
+    attachCartToggleEvents();
   });
 
-  document.addEventListener("turbo:frame-load", attachCartListeners); // Reasignar después de reemplazos Turbo
+  // Cuando se reemplace el ícono del carrito por Turbo
+  document.addEventListener("turbo:frame-load", (event) => {
+    if (event.target.id === "cart_icon") {
+      attachCartToggleEvents();
+    }
+    attachCartListeners();
+  });
 </script>
+
+
