@@ -1,58 +1,62 @@
+import 'package:design_alma/blocs/category/category_bloc.dart';
+import 'package:design_alma/blocs/category/category_event.dart';
+import 'package:design_alma/blocs/screens/category_screen.dart';
 import 'package:flutter/material.dart';
-import 'feature/views/categories_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'blocs/screens/home_screen.dart';
+import 'blocs/repositories/category_repository.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final CategoryRepository categoryRepository = CategoryRepository();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Mi App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
-        useMaterial3: true,
+      title: 'DesignAlma App',
+      home: HomeScreen(
+        categoryRepository: categoryRepository,
       ),
-      home: const HomeView(),
     );
   }
 }
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class HomeScreen extends StatelessWidget {
+  final CategoryRepository categoryRepository;
+
+  const HomeScreen({
+    super.key,
+    required this.categoryRepository,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Inicio"),
-        backgroundColor: Colors.teal,
-        foregroundColor: Colors.white,
-      ),
+      appBar: AppBar(title: const Text('Home')),
       body: Center(
-        child: ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-            backgroundColor: Colors.teal,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              child: const Text('Ver Productos'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => BlocProvider(
+                      create: (_) =>
+                          CategoryBloc(categoryRepository)..add(LoadProducts()),
+                      child: const CategoryScreen(),
+                    ),
+                  ),
+                );
+              },
             ),
-          ),
-          icon: const Icon(Icons.category),
-          label: const Text(
-            "Ir a Categorías",
-            style: TextStyle(fontSize: 18),
-          ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const CategoriesView()),
-            );
-          },
+          ],
         ),
       ),
     );
