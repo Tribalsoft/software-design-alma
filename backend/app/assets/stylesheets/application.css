@@ -15,3 +15,8 @@ body {
 .ci {
   color: inherit;
 }
+
+.turbo-progress-bar {
+  background-color: black;
+  height: 3px;
+}

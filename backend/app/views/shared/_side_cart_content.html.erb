@@ -3,5 +3,5 @@
     <%= render partial: "cart_items/cart_item", locals: { item: item } %>
   <% end %>
 <% else %>
-  <p class="text-center text-muted py-5">Tu carrito está vacío.</p>
+  <p class="text-center text-muted py-5"><%= t("empty_cart") %></p>
 <% end %>
