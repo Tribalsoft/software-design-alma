@@ -28,7 +28,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= javascript_importmap_tags %>
 
     <% if flash[:item_added] %>
@@ -65,6 +64,9 @@
     <% unless controller_path.starts_with?("admin/") %>
       <%= render 'shared/navbar' %>
     <% end %>
+    
+    <%= turbo_stream_from "cart" %>
+
     <%= yield %>
     <!-- Panel lateral del carrito -->
     <%= render 'shared/side_cart' %>

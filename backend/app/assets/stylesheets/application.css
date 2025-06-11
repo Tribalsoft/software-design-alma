@@ -9,9 +9,14 @@
  * Consider organizing styles into separate files for maintainability.
  */
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .ci {
   color: inherit;
+}
+
+.turbo-progress-bar {
+  background-color: black;
+  height: 3px;
 }

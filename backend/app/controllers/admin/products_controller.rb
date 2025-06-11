@@ -38,9 +38,16 @@ class Admin::ProductsController < ApplicationController
   end
 
   def destroy
+  @product = Product.find(params[:id])
+
+  if CartItem.where(product_id: @product.id).any?
+    redirect_to admin_category_products_path, alert: "Este producto está en carritos y no puede ser eliminado."
+  else
     @product.destroy
-    redirect_to admin_category_products_path, notice: "Producto eliminado correctamente."
+    redirect_to admin_category_products_path, notice: "Producto eliminado."
   end
+end
+
 
   private
 

@@ -134,3 +134,11 @@ en:
   empty_cart: Your cart is empty
   your_cart: Your Shopping Cart
   checkout: Checkout
+  remove: Remove
+
+#TODO: Recuperar contraseña
+  forgot_password_title: "Forgot your password?"
+  remembered_your_password: "Remembered your password?"
+  send_reset_password_instructions: "Send email"
+  reset_instructions_note: "We will send you a recovery email"
+  sign_in: "Sign in"

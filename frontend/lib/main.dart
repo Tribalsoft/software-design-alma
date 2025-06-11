@@ -2,22 +2,20 @@ import 'package:design_alma/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final CategoryRepository categoryRepository = CategoryRepository();
 
   @override
   Widget build(BuildContext context) {
     final appRoute = AppRoute();
 
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Mi App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
-        useMaterial3: true,
+      title: 'DesignAlma App',
+      home: HomeScreen(
+        categoryRepository: categoryRepository,
       ),
       initialRoute: '/',
       routes: appRoute.routes,

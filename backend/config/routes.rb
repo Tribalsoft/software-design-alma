@@ -31,6 +31,10 @@ resource :cart, only: [:show] do
   resources :cart_items, only: [:update, :destroy]
 end
 
+resources :cart_items do
+  patch :update_quantity, on: :member
+end
+
 
   # Ruta para el health check
   get "up" => "rails/health#show", as: :rails_health_check

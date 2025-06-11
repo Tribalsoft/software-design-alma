@@ -1,38 +1,53 @@
 // Import básico de Rails
-import "@hotwired/turbo-rails"
-import "controllers"
+import "@hotwired/turbo-rails";
+import "controllers";
+
+import { initSidebar } from "custom/init_sidebar";
+import { initDarkMode } from "custom/init_dark_mode";
+import { initChangeLanguage } from "custom/init_change_lenguage";
+import { initChartJsUsersLastMonth } from "custom/init_chart_js_users_last_month";
+import { initCarouselImages } from "custom/init_carousel_images";
 
 document.addEventListener("turbo:load", () => {
-  const toggleButton = document.getElementById("theme-toggle");
-  const themeToggleXl = document.getElementById("theme-toggle-xl");
-
-  const applyTheme = (theme) => document.body.setAttribute('data-theme', theme);
-
-  const savedTheme = localStorage.getItem("theme") || "light";
-  applyTheme(savedTheme);
-
-  //! Control de modo oscuro
-  const toggleTheme = () => {
-    const currentTheme = localStorage.getItem("theme") || "light";
-    const newTheme = currentTheme === "light" ? "dark" : "light";
-    localStorage.setItem("theme", newTheme);
-    applyTheme(newTheme);
-  } 
-  toggleButton.addEventListener("click", toggleTheme);
-  themeToggleXl.addEventListener("click", toggleTheme);
-
-  //! Cambiar idioma
-  const languageButton = document.getElementById("internalization");
-  const languageButtonXl = document.getElementById("internalization-xl");
-
-  const changeLanguage = () => {
-    const currentLocale = window.location.pathname.split("/")[1];
-    const newLocale = currentLocale === "es" ? "en" : "es";
-
-    const newPath = window.location.pathname.replace(/^\/(en|es)/, "/" + newLocale);
-    window.location.href = newPath + window.location.search;
+  //* === Iconos ===
+  try {
+    if (window.feather) feather.replace();
+  } catch (e) {
+    console.warn("Feather error:", e);
   }
 
-  languageButton.addEventListener("click", changeLanguage);
-  languageButtonXl.addEventListener("click", changeLanguage);
+  //* === Sidebar ===
+  try {
+    initSidebar();
+  } catch (e) {
+    console.warn("Sidebar error:", e);
+  }
+
+  //* === MODO OSCURO ===
+  try {
+    initDarkMode();
+  } catch (e) {
+    console.warn("Sidebar error:", e);
+  }
+
+  //* === CAMBIO DE IDIOMA ===
+  try {
+    initChangeLanguage();
+  } catch (e) {
+    console.warn("Change language error:", e);
+  }
+
+  //* === CHART.JS: Usuarios por mes ===
+  try {
+    initChartJsUsersLastMonth();
+  } catch (e) {
+    console.warn("Chart.js error:", e);
+  }
+
+  // * === CAROUSEL DE IMÁGENES ===
+  try {
+    initCarouselImages();
+  } catch (e) {
+    console.warn("Carousel error:", e);
+  }
 });

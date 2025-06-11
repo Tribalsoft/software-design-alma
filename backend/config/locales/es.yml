@@ -134,3 +134,23 @@ es:
   empty_cart: El carrito está vacío.
   your_cart: Tu Carrito de Compras
   checkout: Verificar
+
+  #TODO: ADMIN
+  overview: Vista general
+  home: Inicio
+  users: Usuarios
+  welcome: ¡Bienvenido de nuevo
+  message_help_1: ¡Bienvenido a tu panel de administración! Si tienes alguna duda,
+  message_help_2: estamos aquí para ayudarte.
+  go_now: Ir ahora
+  total_active_users: Usuarios activos totales
+  last_7_days: Últimos 7 días
+  management: Gestión
+  products: Productos
+
+  #TODO: Recuperar contraseña
+  forgot_password_title: "¿Olvidaste tu contraseña?"
+  remembered_your_password: "¿Recordaste tu contraseña?"
+  send_reset_password_instructions: "Enviar correo"
+  reset_instructions_note: "Enviaremos un correo electrónico de recuperación"
+  sign_in: "Inicia sesión"
