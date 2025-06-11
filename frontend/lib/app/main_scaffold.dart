@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../feature/categories/pages/homescreen.dart';
+import '../feature/categories/repositories/category_repository.dart';
 import '../feature/home/pages/homepage.dart';
 import '../feature/profile/pages/profile_page.dart';
 
 class MainScaffold extends StatefulWidget {
-  const MainScaffold({super.key});
+  final CategoryRepository categoryRepository = CategoryRepository();
+  
+  MainScaffold({super.key});
 
   @override
   State<MainScaffold> createState() => _MainScaffoldState();
@@ -13,12 +17,12 @@ class MainScaffold extends StatefulWidget {
 class _MainScaffoldState extends State<MainScaffold> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = const [
-    HomePage(),
-    Placeholder(),
-    Placeholder(),
-    Placeholder(),
-    ProfilePage(),
+  final List<Widget> _pages = [
+    HomeScreen(categoryRepository: CategoryRepository(),),
+    const Placeholder(),
+    const Placeholder(),
+    const Placeholder(),
+    const ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -92,7 +96,7 @@ class _MainScaffoldState extends State<MainScaffold> {
               child: SizedBox(
                 width: 70,
                 height: 70,
-                child: Image.asset('assets/icon_trending.png'),
+                child: Image.asset('../../assets/icon_trending.png'),
               ),
             ),
           ),

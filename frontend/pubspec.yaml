@@ -10,8 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  http: ^0.13.6  # o la última versión disponible
   cupertino_icons: ^1.0.8
   flutter_bloc: ^9.1.1
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:

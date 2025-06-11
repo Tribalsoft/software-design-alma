@@ -8,7 +8,7 @@ class AppRoute {
   static const String profile = '/profile';
 
   final Map<String, WidgetBuilder> routes = {
-    AppRoute.home: (context) => const MainScaffold(),
+    AppRoute.home: (context) => MainScaffold(),
     AppRoute.profile: (context) => const ProfilePage(),
   };
 }
