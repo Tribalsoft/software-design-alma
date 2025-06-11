@@ -48,6 +48,21 @@
   }
 }
 
+/* Opcional: Estilo para perfil */
+.profile-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+body[data-theme="dark"] .profile-container {
+  background: #1a1a1a;
+  color: #f0f0f0;
+}
+
 
 body[data-theme="dark"] .login-button {
   background-color: #fff;
