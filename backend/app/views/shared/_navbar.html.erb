@@ -31,16 +31,16 @@
           </button>
           <ul class="dropdown-menu" aria-labelledby="catalogDropdown">
             <% if @categories.any? %>
-    <% @categories.each do |category| %>
-      <li>
-        <%= link_to t("categories.#{category.name}", default: category.name), category_products_path(category), class: "dropdown-item text-uppercase" %>
-      </li>
-    <% end %>
-  <% else %>
-    <li class="dropdown-item text-uppercase text-muted">
-      <%= t('no_categories_available', default: 'No hay categorías') %>
-    </li>
-  <% end %>
+              <% @categories.each do |category| %>
+                <li>
+                  <%= link_to t("categories.#{category.name}", default: category.name), category_products_path(category), class: "dropdown-item text-uppercase" %>
+                </li>
+              <% end %>
+            <% else %>
+              <li class="dropdown-item text-uppercase text-muted">
+                <%= t('no_categories_available', default: 'No hay categorías') %>
+              </li>
+            <% end %>
           </ul>
         </li>
 
@@ -53,18 +53,22 @@
         <!-- Iconos debajo de las opciones del menú solo en pantallas pequeñas -->
         <div class="d-flex mt-3 flex-row align-items-center d-lg-none">
           <% if user_signed_in? %>
-            <!-- Si el usuario está autenticado, mostramos el enlace al perfil -->
             <a href="<%= profile_path %>" class="text-decoration-none text-reset">
               <i class="nvi bi bi-person" style="font-size: 1.7rem; cursor: pointer;" tabindex="0"></i>
             </a>
           <% else %>
-            <!-- Si el usuario no está autenticado, lo redirigimos a login -->
             <a href="<%= new_user_session_path %>" class="text-decoration-none text-reset">
               <i class="nvi bi bi-person" style="font-size: 1.7rem; cursor: pointer;" tabindex="0"></i>
             </a>
           <% end %>
 
-          <i id="cart-toggle" class="nvi mx-5 bi bi-bag" style="font-size: 1.5rem; cursor: pointer;" tabindex="0"></i>
+          <!-- Ícono del carrito para mobile -->
+          <%= render partial: 'shared/cart_icon', locals: {
+            icon_id: "cart-toggle",
+            extra_classes: "mx-5 d-lg-none",
+            cart_items_count: cart_items_count
+          } %>
+
           <i id="theme-toggle" class="nvi me-5 bi bi-sun" style="cursor: pointer; font-size: 1.5rem;" tabindex="0"></i>
           <i id="internalization" class="nvi bi bi-globe" style="font-size: 1.5rem; cursor: pointer;" tabindex="0"></i>
         </div>
@@ -74,21 +78,26 @@
 
     <!-- Iconos a la derecha solo en pantallas grandes -->
     <div class="d-flex align-items-center gap-3 order-lg-3 ms-auto d-none d-lg-flex">
+      <% if user_signed_in? %>
+        <a href="<%= profile_path %>" class="text-decoration-none text-reset">
+          <i class="nvi bi bi-person" style="font-size: 1.7rem; cursor: pointer;" tabindex="0"></i>
+        </a>
+      <% else %>
+        <a href="<%= new_user_session_path %>" class="text-decoration-none text-reset">
+          <i class="nvi bi bi-person" style="font-size: 1.7rem; cursor: pointer;" tabindex="0"></i>
+        </a>
+      <% end %>
 
-        <% if user_signed_in? %>
-          <!-- Si el usuario está autenticado, mostramos el enlace al perfil -->
-          <a href="<%= profile_path %>" class="text-decoration-none text-reset">
-            <i class="nvi bi bi-person" style="font-size: 1.7rem; cursor: pointer;" tabindex="0"></i>
-          </a>
-        <% else %>
-          <!-- Si el usuario no está autenticado, lo redirigimos a login -->
-          <a href="<%= new_user_session_path %>" class="text-decoration-none text-reset">
-            <i class="nvi bi bi-person" style="font-size: 1.7rem; cursor: pointer;" tabindex="0"></i>
-          </a>
-        <% end %>
+      <!-- Ícono del carrito para desktop -->
+      <%= render partial: 'shared/cart_icon', locals: {
+        icon_id: "cart-toggle-xl",
+        extra_classes: "d-none d-lg-block",
+        cart_items_count: cart_items_count
+      } %>
 
-      <i id="cart-toggle-xl" class="nvi bi bi-bag" style="font-size: 1.5rem; cursor: pointer;" tabindex="0"></i>
       <i id="theme-toggle-xl" class="nvi bi bi-sun" style="cursor: pointer; font-size: 1.5rem;" tabindex="0"></i>
       <i id="internalization-xl" class="nvi bi bi-globe" style="font-size: 1.5rem; cursor: pointer;" tabindex="0"></i>
+    </div>
+
   </div>
 </nav>

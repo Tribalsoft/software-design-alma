@@ -30,19 +30,38 @@ class CartItemsController < ApplicationController
   item = current_cart.cart_items.find(params[:id])
   item_id = item.id
   item.destroy
-  flash[:item_added] = true
+  current_cart.reload
+
+  cart_count = current_cart.cart_items.sum(:quantity)
 
   respond_to do |format|
     format.turbo_stream do
       render turbo_stream: [
         turbo_stream.remove("cart_item_#{item_id}"),
         turbo_stream.replace("cart_count", partial: "shared/cart_count"),
-        turbo_stream.replace("total_price", partial: "shared/total_price")
+        turbo_stream.replace("total_price", partial: "shared/total_price"),
+
+        # Actualiza ícono para escritorio
+        turbo_stream.replace("cart_icon_xl", partial: "shared/cart_icon", locals: {
+          icon_id: "cart-toggle-xl",
+          extra_classes: "d-none d-lg-flex",
+          cart_items_count: cart_count
+        }),
+
+        # Actualiza ícono para mobile
+        turbo_stream.replace("cart_icon_mobile", partial: "shared/cart_icon", locals: {
+          icon_id: "cart-toggle",
+          extra_classes: "d-lg-none",
+          cart_items_count: cart_count
+        })
       ]
     end
     format.html { redirect_back fallback_location: root_path }
-    end
   end
+end
+
+
+
 
 
   def show

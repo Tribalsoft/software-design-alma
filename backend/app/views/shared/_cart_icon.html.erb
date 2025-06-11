@@ -1,0 +1,8 @@
+<turbo-frame id="<%= icon_id == 'cart-toggle-xl' ? 'cart_icon_xl' : 'cart_icon_mobile' %>">
+  <div class="cart-icon-wrapper <%= extra_classes %>">
+    <i id="<%= icon_id %>" class="nvi bi bi-bag" style="font-size: 1.5rem; cursor: pointer;" tabindex="0"></i>
+    <% if cart_items_count.to_i > 0 %>
+      <span class="cart-notification"></span>
+    <% end %>
+  </div>
+</turbo-frame>

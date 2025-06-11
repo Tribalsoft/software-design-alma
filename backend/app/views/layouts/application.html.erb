@@ -64,6 +64,9 @@
     <% unless controller_path.starts_with?("admin/") %>
       <%= render 'shared/navbar' %>
     <% end %>
+    
+    <%= turbo_stream_from "cart" %>
+
     <%= yield %>
     <!-- Panel lateral del carrito -->
     <%= render 'shared/side_cart' %>
