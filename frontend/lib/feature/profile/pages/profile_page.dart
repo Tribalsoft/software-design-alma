@@ -8,14 +8,14 @@ class PerfilPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mi Perfil'),
-        backgroundColor: Colors.teal,
+        backgroundColor: const Color.fromARGB(255, 225, 51, 51),
       ),
       body: ListView(
         children: [
           const SizedBox(height: 20),
           const CircleAvatar(
             radius: 50,
-            backgroundColor: Colors.teal,
+            backgroundColor: const Color.fromARGB(255, 225, 51, 51),
             child: Icon(Icons.person, size: 50, color: Colors.white),
           ),
           const SizedBox(height: 10),
