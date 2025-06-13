@@ -613,3 +613,18 @@
     background-position: -100% 0;
   }
 }
+
+.form-row-responsive {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-row-responsive > * {
+  flex: 1 1 100%;
+}
+
+@media (min-width: 768px) {
+  .form-row-responsive > * {
+    flex: 1 1 48%;
+  }
+}

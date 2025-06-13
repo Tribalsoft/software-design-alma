@@ -147,6 +147,14 @@ es:
   last_7_days: Últimos 7 días
   management: Gestión
   products: Productos
+  customize_home: Personalizar Inicio
+  title_h2: Titulo
+  placeholder_title_h2: Escribe tu titulo aqui
+  slogan_h2: Eslogan
+  placeholder_slogan_h2: Escribe tu eslogan aqui
+  Upload_mp4_file: Subir archivo MP4
+  text_color: Color del texto
+  save: Guardar
 
   #TODO: Recuperar contraseña
   forgot_password_title: "¿Olvidaste tu contraseña?"
