@@ -1,12 +1,57 @@
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class PerfilPage extends StatelessWidget {
+  const PerfilPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Profile Page'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Mi Perfil'),
+        backgroundColor: Colors.teal,
+      ),
+      body: ListView(
+        children: [
+          const SizedBox(height: 20),
+          const CircleAvatar(
+            radius: 50,
+            backgroundColor: Colors.teal,
+            child: Icon(Icons.person, size: 50, color: Colors.white),
+          ),
+          const SizedBox(height: 10),
+          const Center(child: Text("Nombre del Usuario", style: TextStyle(fontSize: 18))),
+          const Divider(height: 40, thickness: 1.5),
+
+          ListTile(
+            leading: const Icon(Icons.account_circle),
+            title: const Text('Mi cuenta'),
+            onTap: () {
+              // Ir a detalles de cuenta
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.receipt_long),
+            title: const Text('Mis pedidos'),
+            onTap: () {
+              // Ir a historial de pedidos
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('Configuración'),
+            onTap: () {
+              // Ir a configuración
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title: const Text('Cerrar sesión'),
+            onTap: () {
+              // Lógica de cerrar sesión
+            },
+          ),
+        ],
+      ),
     );
   }
 }

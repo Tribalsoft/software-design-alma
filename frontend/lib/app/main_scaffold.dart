@@ -22,7 +22,7 @@ class _MainScaffoldState extends State<MainScaffold> {
     const HomePage(),
     const Placeholder(),
     const Placeholder(),
-    const ProfilePage(),
+    const PerfilPage(),
   ];
 
   void _onItemTapped(int index) {
