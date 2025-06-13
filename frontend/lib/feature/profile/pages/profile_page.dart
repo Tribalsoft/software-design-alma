@@ -26,28 +26,24 @@ class PerfilPage extends StatelessWidget {
             leading: const Icon(Icons.account_circle),
             title: const Text('Mi cuenta'),
             onTap: () {
-              // Ir a detalles de cuenta
             },
           ),
           ListTile(
             leading: const Icon(Icons.receipt_long),
             title: const Text('Mis pedidos'),
             onTap: () {
-              // Ir a historial de pedidos
             },
           ),
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Configuración'),
             onTap: () {
-              // Ir a configuración
             },
           ),
           ListTile(
             leading: const Icon(Icons.logout),
             title: const Text('Cerrar sesión'),
             onTap: () {
-              // Lógica de cerrar sesión
             },
           ),
         ],
