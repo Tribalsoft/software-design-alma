@@ -1,9 +1,10 @@
 class Admin::DashboardController < ApplicationController
   layout "admin"
-  before_action :authenticate_user!  # Asegura que el usuario esté autenticado
-  before_action :check_admin_role    # Verifica si el usuario tiene el rol de administrador
+  before_action :authenticate_user!
+  before_action :check_admin_role
 
   def index
+    @home_video = HomeVideo.first_or_initialize
     @users = User.all
     @category = Category.all
 
@@ -16,7 +17,20 @@ class Admin::DashboardController < ApplicationController
     end
   end
 
+  def update_home_video
+    @home_video = HomeVideo.first_or_initialize
+    if @home_video.update(home_video_params)
+      redirect_to admin_dashboard_path, notice: "Video actualizado con éxito"
+    else
+      redirect_to admin_dashboard_path, alert: "Error al actualizar el video"
+    end
+  end
+
   private
+
+  def home_video_params
+    params.require(:home_video).permit(:title, :video, :file_video, :slogan, :text_color)
+  end
 
   def check_admin_role
     redirect_to root_path, alert: "No tienes permisos de administrador" unless current_user.admin?

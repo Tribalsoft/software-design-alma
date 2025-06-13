@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
     namespace :admin do
       get "dashboard", to: "dashboard#index"
+      patch 'update_home_video', to: 'dashboard#update_home_video', as: :update_home_video
       resources :users, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
       resources :categories do
         resources :products
