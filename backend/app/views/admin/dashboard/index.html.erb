@@ -128,30 +128,10 @@
 
 <div class="mt-4 gap-3 div-cards">
   <!-- futura analisis categorias compradas home -->
-  <div class="cards shadow-sm p-4 d-flex flex-row justify-content-between align-items-center w-33">
-    <%= form_with model: @home_video, url: admin_update_home_video_path, method: :patch, local: true, html: { multipart: true } do |form| %>
-      <div>
-        <%= form.label :title, "Tittle del Home" %>
-        <%= form.text_field :title %>
-      </div>
-
-      <div>
-        <%= form.label :slogan, "Slogan del Home" %>
-        <%= form.text_field :slogan %>
-      </div>
-
-      <div>
-        <%= form.label :file_video, "O subir archivo MP4" %>
-        <%= form.file_field :file_video %>
-      </div>
-
-      <div>
-        <%= form.label :text_color, "Color del texto" %>
-        <%= form.color_field :text_color %>
-      </div>
-
-      <%= form.submit "Guardar" %>
-    <% end %>
+  <div class="cards shadow-sm p-4 d-flex flex-column">
+    <p class='fs-5 fw-bold'>Categorias populares</p>
+    <p class='fs-6'>Estas son las categorias mas compradas por los clientes</p>
+    <%= image_tag('admins/grafico-torta-basico-1.png', alt: 'Gráfico torta') %>
   </div>
   
   <!-- Caja personalizar home -->
