@@ -9,6 +9,6 @@ class AppRoute {
 
   final Map<String, WidgetBuilder> routes = {
     AppRoute.home: (context) => MainScaffold(),
-    AppRoute.profile: (context) => const ProfilePage(),
+    AppRoute.profile: (context) => const PerfilPage(),
   };
 }
