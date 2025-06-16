@@ -66,14 +66,14 @@
       </canvas>
     </div>
   </div>
-    <!-- Primera tarjeta: Total Users -->
+    <!-- Segunda tarjeta: Proximamente -->
   <div class="cards shadow-sm p-4 d-flex flex-row justify-content-between align-items-center w-33">
     <!-- Columna izquierda: texto -->
     <div class="d-flex flex-column justify-content-center">
       <div class="fw-bold mb-1">
-        <%= t('total_active_users') %>
+        Proximamente...
       </div>
-      <div class="fs-3 fw-bold mb-1"><%= @users.all.size %></div>
+      <div class="fs-3 fw-bold mb-1">0</div>
       <div class="d-flex align-items-center gap-2 text-success">
         <img src="<%= asset_path('admins/ic-levelup.svg') %>" class="icon-levelup" alt="Level up icon">
         <div class="text-dark fs-6 fw-bold"><%= users_growth_percentage %> 
@@ -95,14 +95,14 @@
       </canvas>
     </div>
   </div>
-    <!-- Primera tarjeta: Total Users -->
+    <!-- Tercera tarjeta: Proximamente -->
   <div class="cards shadow-sm p-4 d-flex flex-row justify-content-between align-items-center w-33">
     <!-- Columna izquierda: texto -->
     <div class="d-flex flex-column justify-content-center">
       <div class="fw-bold mb-1">
-        <%= t('total_active_users') %>
+        Proximamente...
       </div>
-      <div class="fs-3 fw-bold mb-1"><%= @users.all.size %></div>
+      <div class="fs-3 fw-bold mb-1">0</div>
       <div class="d-flex align-items-center gap-2 text-success">
         <img src="<%= asset_path('admins/ic-levelup.svg') %>" class="icon-levelup" alt="Level up icon">
         <div class="text-dark fs-6 fw-bold"><%= users_growth_percentage %> 
@@ -123,5 +123,63 @@
         data-values='<%= @usuarios_por_mes.to_json.html_safe %>'>
       </canvas>
     </div>
+  </div>
+</div>
+
+<div class="mt-4 gap-3 div-cards">
+  <!-- futura analisis categorias compradas home -->
+  <div class="cards shadow-sm p-4 d-flex flex-column">
+    <p class='fs-5 fw-bold'>Categorias populares</p>
+    <p class='fs-6'>Estas son las categorias mas compradas por los clientes</p>
+    <%= image_tag('admins/grafico-torta-basico-1.png', alt: 'Gráfico torta') %>
+  </div>
+  
+  <!-- Caja personalizar home -->
+  <div class="cards shadow-sm p-4 w-66 d-flex flex-column">
+    <p class='fs-5 fw-bold'>
+      <%= t('customize_home') %>
+    </p>
+
+    <%= form_with model: @home_video, url: admin_update_home_video_path, method: :patch, local: true, html: { multipart: true } do |form| %>
+      
+      <!-- Primera fila -->
+      <div class="form-row-responsive gap-3">
+        <div class="input-container border flex-grow-1">
+          <%= form.label :title, t('title_h2'), class: "input-label" %>
+          <%= form.text_field :title, placeholder: t('placeholder_title_h2'), class: "custom-input" %>
+        </div>
+
+        <div class="input-container border flex-grow-1">
+          <%= form.label :slogan, t('slogan_h2'), class: "input-label" %>
+          <%= form.text_field :slogan, placeholder: t('placeholder_title_h2'), class: "custom-input" %>
+        </div>
+      </div>
+
+      <!-- Segunda fila -->
+      <div class="form-row-responsive gap-3 mt-5">
+        <div class="upload-box flex-grow-1">
+          <div class="floating-folder folder-unit">
+            <div class="front-side">
+              <div class="folder-tab"></div>
+              <div class="folder-cover"></div>
+            </div>
+            <div class="back-side folder-cover"></div>
+          </div>
+          <label class="file-upload-btn">
+            <%= form.file_field :file_video, class: "hidden" %>
+              <%= t('Upload_mp4_file') %>
+          </label>
+        </div>
+
+        <div class="input-container border flex-grow-1">
+          <%= form.label :text_color, t('text_color'), class: "input-label" %>
+          <%= form.color_field :text_color, value: "#3b82f6", class: "custom-input-color custom-input" %>
+        </div>
+      </div>
+
+      <div class='text-end'>
+        <%= form.submit t('save'), class: "mt-3 btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
 </div>
