@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
     final appRoute = AppRoute();
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'DesignAlma App',
       initialRoute: AppRoute.home,
       routes: appRoute.routes,
