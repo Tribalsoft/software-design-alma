@@ -8,7 +8,6 @@ class PerfilBloc extends Bloc<PerfilEvent, PerfilState> {
       emit(PerfilLoading());
 
       try {
-        // Simular carga
         await Future.delayed(const Duration(seconds: 1));
         const nombre = 'Alma';
         emit(PerfilLoaded(nombreUsuario: nombre));
