@@ -1,4 +1,7 @@
 /* Panel Lateral */
+#main-content {
+  background-color: #f8f9fa;
+}
 
 .fs-7 {
   font-size: 0.8rem;
@@ -650,4 +653,34 @@
   .form-row-responsive > * {
     flex: 1 1 48%;
   }
+}
+
+/* usuarios */
+.table-personalized {
+  border-radius: 7px;
+  background-color: white;
+  border: 1px solid #e9e9e9;
+  padding: 1rem;
+}
+
+/* Elimina bordes del encabezado de tabla */
+.table-personalized thead th {
+  border-bottom: none !important;
+  box-shadow: none !important;
+  color: #919eab;
+  background-color: white;
+}
+
+.bg-danger-ok {
+  background-color: #fdd6d6;
+  color: red !important;
+}
+
+.bg-secondary-ok {
+  background-color: #d6fdd6;
+  color: green !important;
+}
+.hover-opacity:hover {
+  opacity: 0.6;
+  transition: opacity 0.2s ease-in-out;
 }
