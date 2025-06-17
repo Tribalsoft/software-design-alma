@@ -446,7 +446,7 @@
 
 /* Folder */
 .upload-box {
-  width:100%;
+  width: 100%;
   --transition: 350ms;
   --folder-W: 120px;
   --folder-H: 80px;
@@ -555,9 +555,15 @@
 }
 
 @keyframes float {
-  0%   { transform: translateY(0px); }
-  50%  { transform: translateY(-20px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 /* cards */
@@ -575,7 +581,13 @@
   height: 70px;
   position: relative;
   float: left;
-  background: linear-gradient(120deg, #e5e5e5 30%, #f0f0f0 38%, #f0f0f0 40%, #e5e5e5 48%);
+  background: linear-gradient(
+    120deg,
+    #e5e5e5 30%,
+    #f0f0f0 38%,
+    #f0f0f0 40%,
+    #e5e5e5 48%
+  );
   border-radius: 50%;
   background-size: 200% 100%;
   background-position: 100% 0;
@@ -588,7 +600,13 @@
   position: relative;
   float: right;
   border-radius: 5px;
-  background: linear-gradient(120deg, #e5e5e5 30%, #f0f0f0 38%, #f0f0f0 40%, #e5e5e5 48%);
+  background: linear-gradient(
+    120deg,
+    #e5e5e5 30%,
+    #f0f0f0 38%,
+    #f0f0f0 40%,
+    #e5e5e5 48%
+  );
   background-size: 200% 100%;
   background-position: 100% 0;
   animation: skeleton-loading 2s infinite;
@@ -600,7 +618,13 @@
   position: relative;
   float: right;
   border-radius: 5px;
-  background: linear-gradient(120deg, #e5e5e5 30%, #f0f0f0 38%, #f0f0f0 40%, #e5e5e5 48%);
+  background: linear-gradient(
+    120deg,
+    #e5e5e5 30%,
+    #f0f0f0 38%,
+    #f0f0f0 40%,
+    #e5e5e5 48%
+  );
   margin-top: 10px;
   background-size: 200% 100%;
   background-position: 100% 0;

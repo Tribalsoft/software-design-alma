@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     root "home#index"
 
     namespace :admin do
+      resource :home_video, only: [:edit, :update]
+      delete 'home_video/delete_all', to: 'home_video#delete_all', as: 'delete_all_home_video'
       get "dashboard", to: "dashboard#index"
       patch 'update_home_video', to: 'dashboard#update_home_video', as: :update_home_video
       resources :users, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
