@@ -684,3 +684,11 @@
   opacity: 0.6;
   transition: opacity 0.2s ease-in-out;
 }
+
+.bg-selected {
+  background-color: #ccf4fe !important;
+}
+
+#selection-count {
+  color: blue !important;
+}

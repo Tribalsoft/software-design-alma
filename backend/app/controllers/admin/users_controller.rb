@@ -41,6 +41,11 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_users_path, notice: "Usuario eliminado correctamente."
   end
 
+  def bulk_delete
+    User.where(id: params[:selected_users]).destroy_all
+    redirect_to admin_users_path, notice: "Usuarios eliminados correctamente."
+  end
+
   private
 
   def set_user

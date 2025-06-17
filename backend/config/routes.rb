@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       delete 'home_video/delete_all', to: 'home_video#delete_all', as: 'delete_all_home_video'
       get "dashboard", to: "dashboard#index"
       patch 'update_home_video', to: 'dashboard#update_home_video', as: :update_home_video
+
+      delete 'users/bulk_delete', to: 'users#bulk_delete', as: :bulk_delete_admin_users
       resources :users, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
       resources :categories do
         resources :products
