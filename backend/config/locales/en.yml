@@ -162,6 +162,19 @@ en:
   are_you_sure: Are you sure you want to clear the home video?
   panel_title: Admin Panel
 
+  #TODO: ADMIN USERS
+  users: Users
+  filter_city: Filter by city
+  search_name: Search by name
+  city: City
+  name: name
+  address: Address
+  created: Created
+  role: Rol
+  actions: Actions
+  add_user: Add User
+  all: all
+
 #TODO: Recuperar contraseña
   forgot_password_title: "Forgot your password?"
   remembered_your_password: "Remembered your password?"

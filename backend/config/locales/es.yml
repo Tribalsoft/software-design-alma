@@ -161,6 +161,19 @@ es:
   are_you_sure: ¿Estás seguro? Esto eliminará todos los videos.
   panel_title: Panel de Administración
 
+  #TODO: ADMIN USERS
+  title: Usuarios
+  filter_city: Filtrar por ciudad
+  search_name: Buscar por nombre
+  city: Ciudad
+  name: Nombre
+  address: Dirección
+  created: Creado
+  role: Rol
+  actions: Acciones
+  add_user: Agregar Usuario
+  all: Todas
+
   #TODO: Recuperar contraseña
   forgot_password_title: "¿Olvidaste tu contraseña?"
   remembered_your_password: "¿Recordaste tu contraseña?"

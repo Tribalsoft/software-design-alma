@@ -6,6 +6,13 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = User.all
+    if params[:city].present? && params[:city] != "Todas"
+      @users = @users.where(city: params[:city])
+    end
+
+    if params[:name].present?
+      @users = @users.where("LOWER(name) LIKE ?", "%#{params[:name].downcase}%")
+    end
   end
 
   def show

@@ -1,3 +1,58 @@
+<h1 class="text-center mb-3">
+  <%= t('users') %>
+</h1>
+
+<div class="row g-3 mb-4">
+  <!-- Filtro por ciudad (25% en md, 100% en móvil) -->
+  <div class="col-12 col-md-3">
+    <%= form_with url: "/#{I18n.locale}/admin/users", method: :get, local: true do %>
+      <label for="cityFilter" class="form-label fw-semibold text-muted mb-1">
+        <i class="bi bi-geo-alt-fill me-1 text-primary"></i> <%= t('filter_city') %>
+      </label>
+      <%= select_tag :city,
+        options_for_select(@users.map(&:city).uniq.compact.sort.prepend(t("all")), params[:city]),
+        class: "form-select shadow-sm", id: "cityFilter", onchange: "this.form.submit()", style: "height: 50px;" %>
+    <% end %>
+  </div>
+
+  <!-- Búsqueda por nombre (75% en md, 100% en móvil) -->
+  <div class="col-12 col-md-9">
+    <%= form_with url: "/#{I18n.locale}/admin/users", method: :get, local: true do %>
+      <label for="nameSearch" class="form-label fw-semibold text-muted mb-1">
+        <i class="bi bi-search me-1 text-primary"></i> <%= t('filter_name') %>
+      </label>
+      <div class="input-group shadow-sm">
+        <%= text_field_tag :name, params[:name], class: "form-control", id: "nameSearch", style: "height: 50px;" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% if params[:city].present? || params[:name].present? %>
+  <div class="d-flex align-items-center px-4 py-2 mb-4">
+    <div>
+      <% if params[:city].present? && params[:city] != t("all") %>
+        <span class="me-3">
+          <strong> <%= t('city') %> </strong>
+          <span class='ms-2 bg-gray'><%= params[:city] %></span>
+        </span>
+      <% end %>
+
+      <% if params[:name].present? %>
+        <span class="me-3">
+          <strong> <%= t('name') %> </strong>
+          <span class='ms-2 bg-gray'><%= params[:name] %></span>
+        </span>
+      <% end %>
+    </div>
+
+    <%= link_to admin_users_path(locale: I18n.locale), class: "clear-bt text-danger text-decoration-none fw-bold" do %>
+      <i class="bi bi-trash-fill hover-opacity"></i>
+      <span><%= t('clear') %></span>
+    <% end %>
+  </div>
+<% end %>
+
 <%= form_with url: "/#{I18n.locale}/admin/users/bulk_delete", method: :delete do %>
   <div class="table-responsive table-personalized">
   <table class="table table-hover align-middle mb-0">
@@ -6,7 +61,7 @@
       <th colspan="7" class="text-white bg-selected px-4 rounded">
         <div class="d-flex justify-content-between align-items-center w-100">
           <span id="selection-count"></span>
-          <button type="submit" class="btn p-0 border-0 bg-transparent text-danger">
+          <button type="submit" class="btn p-0 border-0 bg-transparent text-primary">
             <i class="bi bi-trash-fill fs-4 hover-opacity"></i>
           </button>
         </div>
@@ -14,12 +69,12 @@
     </tr>
     <tr class="table-light no-thead-border">
           <th id="selection-header" style="width: 2%;"><input type="checkbox" id="select-all"></th>
-          <th style="width: 50%;">Nombre</th>
-          <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;">Ciudad</th>
-          <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;">Dirección</th>
-          <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;">Creado</th>
-          <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;">Rol</th>
-          <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;">Acciones</th>
+          <th style="width: 50%;"><%= t('name') %></th>
+          <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;"><%= t('city') %></th>
+          <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;"><%= t('address') %></th>
+          <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;"><%= t('created') %></th>
+          <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;"><%= t('role') %></th>
+          <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;"><%= t('actions') %></th>
         </tr>
       </thead>
       <tbody>
@@ -48,16 +103,14 @@
             </td>
             <td class="text-end d-none d-md-table-cell text-nowrap px-1">
               <div class="d-flex justify-content-center align-items-center">
-                <%= link_to admin_user_path(user), class: 'text-decoration-none text-body mx-1', title: 'Ver' do %>
+                <%= link_to admin_user_path(user), class: 'text-decoration-none text-body mx-1' do %>
                   <i class="bi bi-eye-fill fs-4 hover-opacity"></i>
                 <% end %>
 
                 <%= button_to admin_user_path(user),
                     method: :delete,
                     form: { data: { turbo: false } },
-                    data: { confirm: '¿Estás seguro?' },
-                    class: 'btn p-0 border-0 bg-transparent text-danger mx-1',
-                    title: 'Eliminar' do %>
+                    class: 'btn p-0 border-0 bg-transparent text-danger mx-1' do %>
                   <i class="bi bi-trash-fill fs-4 hover-opacity"></i>
                 <% end %>
               </div>
@@ -71,7 +124,7 @@
 
 <div class="mt-4 text-end">
   <%= link_to new_admin_user_path, class: 'btn btn-success' do %>
-    <i class="bi bi-plus-circle"></i> Agregar Usuario
+    <i class="bi bi-plus-circle"></i> <%= t('add_user') %>
   <% end %>
 </div>
 
