@@ -10,7 +10,7 @@
         <i class="bi bi-geo-alt-fill me-1 text-primary"></i> <%= t('filter_city') %>
       </label>
       <%= select_tag :city,
-        options_for_select(@users.map(&:city).uniq.compact.sort.prepend(t("all")), params[:city]),
+        options_for_select(@cities.prepend(t("all")), params[:city]),
         class: "form-select shadow-sm", id: "cityFilter", onchange: "this.form.submit()", style: "height: 50px;" %>
     <% end %>
   </div>
