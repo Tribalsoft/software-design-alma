@@ -5,7 +5,7 @@
 
 .hellstar-add-to-cart {
   letter-spacing: 0.5px;
-  min-width: 500px;
+  min-width: 50px;
   padding: 15px;
   margin-top: 15px;
   background-color: #000;
@@ -39,12 +39,12 @@
   border-radius: 999px;
 }
 
-// Estilo para ocultar radio button nativo
+/* Estilo para ocultar radio button nativo */
 input[type="radio"].btn-check {
   display: none;
 }
 
-// Contenedor de botón de talla
+/* Contenedor de botón de talla */
 .btn-size-label {
   display: inline-flex;
   align-items: center;
@@ -60,24 +60,24 @@ input[type="radio"].btn-check {
   font-size: 0.9rem;
 }
 
-// Estilo cuando está seleccionado (radio checked)
+/* Estilo cuando está seleccionado (radio checked) */
 input[type="radio"].btn-check:checked + .btn-size-label {
   background-color: #000;
   color: #fff;
   border-color: #000;
 }
 
-// Hover para más estilo
+/* Hover para más estilo */
 .btn-size-label:hover {
   border-color: #000;
 }
 
-// Oculta el radio original
+/* Oculta el radio original */
 input[type="radio"].btn-check {
   display: none;
 }
 
-// Estilo del label como botón
+/* Estilo del label como botón */
 .size-option {
   background-color: #fff;
   color: #000;
