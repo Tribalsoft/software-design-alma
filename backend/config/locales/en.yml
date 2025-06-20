@@ -170,7 +170,7 @@ en:
   name: name
   address: Address
   created: Created
-  role: Rol
+  role: Role
   actions: Actions
   add_user: Add User
   all: all
