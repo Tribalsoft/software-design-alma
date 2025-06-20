@@ -1,2 +1,65 @@
-<h1><%= @product.name %></h1>
-<p><%= @product.description %></p>
+<%= stylesheet_link_tag 'product_style', media: 'all' %>
+
+<div class="container py-5">
+  <div class="row align-items-start hellstar-product-layout">
+    <!-- Imagen del producto -->
+    <div class="col-md-6 text-center">
+      <%= image_tag @product.image, alt: @product.name, class: "img-fluid hellstar-product-image" %>
+    </div>
+
+    <!-- Detalles del producto -->
+    <div class="col-md-6">
+      <h2 class="hellstar-title mb-2"><%= @product.name.upcase %></h2>
+
+      <p class="hellstar-price mb-3"><%= number_to_currency(@product.price, unit: "$", precision: 0) %></p>
+
+      <p class="mb-4 text-muted"><%= @product.description %></p>
+
+      <!-- Formulario -->
+      <%= form_with url: cart_items_path, method: :post, local: true, html: { class: "open-cart-on-submit" } do |f| %>
+        <%= f.hidden_field :product_id, value: @product.id %>
+
+        <!-- Tallas -->
+        <div class="mb-3">
+          <label class="form-label fw-bold">Talla</label>
+          <div class="d-flex flex-wrap gap-3 mt-2">
+            <% @product.sizes.each_with_index do |size, index| %>
+              <%= f.radio_button :size, size, id: "size_#{size}", class: "btn-check", checked: index == 0 %>
+              <label class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold size-option" for="size_<%= size %>">
+                <%= size %>
+              </label>
+            <% end %>
+          </div>
+        </div>
+
+
+        <!-- Cantidad -->
+        <div class="mb-3">
+          <label class="form-label fw-bold">Cantidad</label>
+          <%= f.select :quantity, options_for_select(1..9), {}, class: "form-select rounded-pill w-auto px-4 py-2 fw-semibold" %>
+        </div>
+
+        <%= f.submit "AÑADIR AL CARRITO", class: "btn btn-dark w-100 hellstar-add-to-cart" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- JS: abrir carrito al añadir -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const forms = document.querySelectorAll("form.open-cart-on-submit");
+
+    forms.forEach(form => {
+      form.addEventListener("submit", () => {
+        const sideCart = document.getElementById("side-cart");
+        if (sideCart) {
+          sideCart.classList.remove("hidden");
+          requestAnimationFrame(() => {
+            sideCart.classList.add("open");
+          });
+        }
+      });
+    });
+  });
+</script>

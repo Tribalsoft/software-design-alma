@@ -1,28 +1,30 @@
 class CartItemsController < ApplicationController
   def create
-    cart = current_cart
-    product = Product.find(params[:product_id])
-    selected_sizes = Array(params[:sizes])
-  
-    if selected_sizes.empty?
-      redirect_back fallback_location: root_path, alert: t("size_obligatory")
-      return
+  cart = current_cart
+  product = Product.find(params[:product_id])
+
+  sizes = Array(params[:sizes].presence || params[:size])
+  quantity = params[:quantity].to_i > 0 ? params[:quantity].to_i : 1
+
+  if sizes.empty?
+    redirect_back fallback_location: root_path, alert: t("size_obligatory")
+    return
+  end
+
+  sizes.each do |size|
+    item = cart.cart_items.find_by(product_id: product.id, size: size)
+
+    if item
+      item.quantity += quantity
+    else
+      item = cart.cart_items.build(product: product, size: size, quantity: quantity)
     end
-  
-    selected_sizes.each do |size|
-      item = cart.cart_items.find_by(product_id: product.id, size: size)
-  
-      if item
-        item.increment(:quantity)
-      else
-        item = cart.cart_items.build(product: product, size: size, quantity: 1)
-      end
-  
-      item.save
-    end
-  
-    flash[:item_added] = true # 🔥 Aquí
-    redirect_back fallback_location: root_path
+
+    item.save
+  end
+
+  flash[:item_added] = true
+  redirect_back fallback_location: root_path
   end
   
 
