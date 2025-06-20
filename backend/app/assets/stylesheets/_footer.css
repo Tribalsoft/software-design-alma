@@ -4,7 +4,7 @@ footer.footer {
   padding: 40px 20px;
   font-family: 'Poppins', sans-serif;
   opacity: 0;
-  transform: translateY(50px);
+  transform: none !important;
   transition: opacity 0.8s ease, transform 0.8s ease;
   will-change: opacity, transform;
 
@@ -15,7 +15,7 @@ footer.footer {
 
   &.footer-hidden {
     opacity: 0;
-    transform: translateY(50px);
+    transform: none !important;
   }
 
   .footer-container {
@@ -56,14 +56,21 @@ footer.footer {
   }
 
   .footer-social {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 15px;
 
-    a img {
-      width: 24px;
+  a {
+    color: white;
+    font-size: 24px;
+    transition: transform 0.3s ease, color 0.3s ease;
+
+    &:hover {
+      color: #aaaaaa; // Gris claro al pasar el mouse
+      transform: scale(1.2);
     }
   }
 }
+
 
 footer.footer {
   margin-bottom: 0;
