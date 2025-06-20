@@ -5,7 +5,15 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [ :show, :edit, :update, :destroy ]  # Cargar el usuario antes de las acciones
 
   def index
+    @cities = User.distinct.pluck(:city).compact.sort  # Obtener todas las ciudades
     @users = User.all
+    if params[:city].present? && params[:city] != "Todas"
+      @users = @users.where(city: params[:city])
+    end
+
+    if params[:name].present?
+      @users = @users.where("LOWER(name) LIKE :query OR LOWER(last_name) LIKE :query", query: "%#{params[:name].downcase}%")
+    end
   end
 
   def show
@@ -39,6 +47,11 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to admin_users_path, notice: "Usuario eliminado correctamente."
+  end
+
+  def bulk_delete
+    User.where(id: params[:selected_users]).destroy_all
+    redirect_to admin_users_path, notice: "Usuarios eliminados correctamente."
   end
 
   private

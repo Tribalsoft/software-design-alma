@@ -1,38 +1,166 @@
-<h1 class="mb-4 text-center">Users</h1>
+<h1 class="text-center mb-3">
+  <%= t('users') %>
+</h1>
 
-<table class="table table-striped table-hover">
-  <thead class="table-dark">
-    <tr>
-      <th>ID</th>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Ciudad</th>
-      <th>Dirección</th>
-      <th>Email</th>
-      <th>Creado</th>
-      <th>Rol</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.id %></td>
-        <td><%= user.name %></td>
-        <td><%= user.last_name %></td>
-        <td><%= user.city %></td>
-        <td><%= user.address %></td>
-        <td><%= user.email %></td>
-        <td><%= user.created_at.strftime("%Y-%m-%d") %></td>
-        <td><%= user.admin? ? "Admin" : "User" %></td>
-        <td>
-          <%= link_to 'Ver', admin_user_path(user), class: 'btn btn-sm btn-info me-2' %>
-        </td>
-      </tr>
+<div class="row g-3 mb-4">
+  <!-- Filtro por ciudad (25% en md, 100% en móvil) -->
+  <div class="col-12 col-md-3">
+    <%= form_with url: "/#{I18n.locale}/admin/users", method: :get, local: true do %>
+      <label for="cityFilter" class="form-label fw-semibold text-muted mb-1">
+        <i class="bi bi-geo-alt-fill me-1 text-primary"></i> <%= t('filter_city') %>
+      </label>
+      <%= select_tag :city,
+        options_for_select(@cities.prepend(t("all")), params[:city]),
+        class: "form-select shadow-sm", id: "cityFilter", onchange: "this.form.submit()", style: "height: 50px;" %>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<div class="mt-4">
-  <%= link_to 'Agregar Usuario', new_admin_user_path, class: 'btn btn-success' %>
+  <!-- Búsqueda por nombre (75% en md, 100% en móvil) -->
+  <div class="col-12 col-md-9">
+    <%= form_with url: "/#{I18n.locale}/admin/users", method: :get, local: true do %>
+      <label for="nameSearch" class="form-label fw-semibold text-muted mb-1">
+        <i class="bi bi-search me-1 text-primary"></i> <%= t('filter_name') %>
+      </label>
+      <div class="input-group shadow-sm">
+        <%= text_field_tag :name, params[:name], class: "form-control", id: "nameSearch", style: "height: 50px;" %>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+<% if params[:city].present? || params[:name].present? %>
+  <div class="d-flex align-items-center px-4 py-2 mb-4">
+    <div>
+      <% if params[:city].present? && params[:city] != t("all") %>
+        <span class="me-3">
+          <strong> <%= t('city') %> </strong>
+          <span class='ms-2 bg-gray'><%= params[:city] %></span>
+        </span>
+      <% end %>
+
+      <% if params[:name].present? %>
+        <span class="me-3">
+          <strong> <%= t('name') %> </strong>
+          <span class='ms-2 bg-gray'><%= params[:name] %></span>
+        </span>
+      <% end %>
+    </div>
+
+    <%= link_to admin_users_path(locale: I18n.locale), class: "clear-bt text-danger text-decoration-none fw-bold" do %>
+      <i class="bi bi-trash-fill hover-opacity"></i>
+      <span><%= t('clear') %></span>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_with url: "/#{I18n.locale}/admin/users/bulk_delete", method: :delete do %>
+  <div class="table-responsive table-personalized">
+  <table class="table table-hover align-middle mb-0">
+    <thead>
+    <tr id="selection-bar" class="d-none">
+      <th colspan="7" class="text-white bg-selected px-4 rounded">
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <span id="selection-count"></span>
+          <button type="submit" class="btn p-0 border-0 bg-transparent text-primary">
+            <i class="bi bi-trash-fill fs-4 hover-opacity"></i>
+          </button>
+        </div>
+      </th>
+    </tr>
+    <tr class="table-light no-thead-border">
+          <th id="selection-header" style="width: 2%;"><input type="checkbox" id="select-all"></th>
+          <th style="width: 50%;"><%= t('name') %></th>
+          <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;"><%= t('city') %></th>
+          <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;"><%= t('address') %></th>
+          <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;"><%= t('created') %></th>
+          <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;"><%= t('role') %></th>
+          <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;"><%= t('actions') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><input type="checkbox" name="selected_users[]" value="<%= user.id %>" class="user-checkbox"></td>
+            <!-- Columna visible en todas las pantallas -->
+            <td>
+              <div class="fw-bold"><%= user.name %> <%= user.last_name %></div>
+              <div class="text-muted small"><%= user.email %></div>
+
+              <!-- Ícono de teléfono en móviles -->
+              <div class="d-md-none mt-2">
+                <i class="bi bi-phone-fill text-primary fs-4"></i>
+              </div>
+            </td>
+
+            <!-- Estas columnas solo en pantallas grandes -->
+            <td class="d-none d-md-table-cell text-center text-nowrap px-1"><%= user.city %></td>
+            <td class="d-none d-md-table-cell text-center text-nowrap px-1"><%= user.address %></td>
+            <td class="d-none d-md-table-cell text-center text-nowrap px-1"><%= user.created_at.strftime("%Y-%m-%d") %></td>
+            <td class="d-none d-md-table-cell text-center text-nowrap px-1">
+              <span class="badge <%= user.admin? ? 'bg-danger-ok' : 'bg-secondary-ok' %>">
+                <%= user.admin? ? "Admin" : "User" %>
+              </span>
+            </td>
+            <td class="text-end d-none d-md-table-cell text-nowrap px-1">
+              <div class="d-flex justify-content-center align-items-center">
+                <%= link_to admin_user_path(user), class: 'text-decoration-none text-body mx-1' do %>
+                  <i class="bi bi-eye-fill fs-4 hover-opacity"></i>
+                <% end %>
+
+                <%= button_to admin_user_path(user),
+                    method: :delete,
+                    form: { data: { turbo: false } },
+                    class: 'btn p-0 border-0 bg-transparent text-danger mx-1' do %>
+                  <i class="bi bi-trash-fill fs-4 hover-opacity"></i>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<div class="mt-4 text-end">
+  <%= link_to new_admin_user_path, class: 'btn btn-success' do %>
+    <i class="bi bi-plus-circle"></i> <%= t('add_user') %>
+  <% end %>
+</div>
+
+<script>
+  document.addEventListener("turbo:load", function () {
+    const selectAll = document.getElementById("select-all");
+    const checkboxes = document.querySelectorAll(".user-checkbox");
+    const selectionBar = document.getElementById("selection-bar");
+    const selectionCount = document.getElementById("selection-count");
+
+    function updateSelectionUI() {
+      const selected = document.querySelectorAll(".user-checkbox:checked").length;
+
+      if (selected > 0) {
+        selectionBar.classList.remove("d-none");
+        selectionCount.textContent = `${selected} seleccionados`;
+      } else {
+        selectionBar.classList.add("d-none");
+        selectionCount.textContent = "";
+      }
+    }
+
+    if (selectAll) {
+      selectAll.addEventListener("change", function () {
+        checkboxes.forEach(cb => cb.checked = selectAll.checked);
+        updateSelectionUI();
+      });
+    }
+
+    checkboxes.forEach(cb => {
+      cb.addEventListener("change", () => {
+        selectAll.checked = [...checkboxes].every(c => c.checked);
+        updateSelectionUI();
+      });
+    });
+
+    updateSelectionUI();
+  });
+</script>

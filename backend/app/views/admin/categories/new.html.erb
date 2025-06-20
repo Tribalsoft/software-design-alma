@@ -1,6 +1,6 @@
-<h1 class="text-center"><%= @category.new_record? ? "Nueva Categoría" : "Editar Categoría" %></h1>
-
 <%= render 'shared/form_errors', object: @category %>
+
+<h1 class="text-center">Nueva Categoría</h1>
 
 <%= form_with model: [:admin, @category], local: true, html: { multipart: true } do |form| %>
   <div class="mb-3">
@@ -19,6 +19,6 @@
     <% end %>
   </div>
 
-  <%= form.submit class: "btn btn-primary" %>
+  <%= form.submit "Crear categoría", class: "btn btn-primary" %>
   <%= link_to "Cancelar", admin_categories_path, class: "btn btn-secondary ms-2" %>
 <% end %>

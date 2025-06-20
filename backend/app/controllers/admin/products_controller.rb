@@ -22,7 +22,7 @@ class Admin::ProductsController < ApplicationController
     if @product.save
       redirect_to admin_category_products_path(@category), notice: "Producto creado correctamente."
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -37,7 +37,7 @@ class Admin::ProductsController < ApplicationController
     end
   end
 
-  def destroy
+def destroy
   @product = Product.find(params[:id])
 
   if CartItem.where(product_id: @product.id).any?

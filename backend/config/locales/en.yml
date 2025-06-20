@@ -1,35 +1,31 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
   activerecord:
     errors:
+      messages:
+        record_invalid: "Validation failed: %{errors}"
+        taken: "has already been taken"
+        blank: "can't be blank"
+        invalid: "is invalid"
+        too_short: "is too short (minimum is %{count} characters)"
+        too_long: "is too long (maximum is %{count} characters)"
+        wrong_length: "is the wrong length (should be %{count} characters)"
+        not_a_number: "is not a number"
+        greater_than: "must be greater than %{count}"
+        greater_than_or_equal_to: "must be greater than or equal to %{count}"
+        equal_to: "must be equal to %{count}"
+        less_than: "must be less than %{count}"
+        less_than_or_equal_to: "must be less than or equal to %{count}"
+        other_than: "must be other than %{count}"
+        odd: "must be odd"
+        even: "must be even"
+        confirmation: "doesn't match confirmation"
+        accepted: "must be accepted"
+        empty: "can't be empty"
+        present: "must be blank"
+        inclusion: "is not included in the list"
+        exclusion: "is reserved"
+        required: "must exist"
+        taken_in_scope: "has already been taken in this context"
       models:
         category:
           attributes:
@@ -66,6 +62,12 @@ en:
               blank: "Product category can't be blank"
             image:
               blank: "Product image can't be blank"
+        categories:
+          attributes:
+            name:
+              blank: "Category name can't be blank"
+            image:
+              blank: "Category image can't be blank"
 
   #TODO: Titulo
   title: Alma Designs
@@ -135,6 +137,43 @@ en:
   your_cart: Your Shopping Cart
   checkout: Checkout
   remove: Remove
+
+  #TODO: ADMIN
+  overview: Overview
+  home: Home
+  users: Users
+  welcome: Welcome back
+  message_help_1: Welcome to your admin panel! If you have any questions,
+  message_help_2: we’re here to help.
+  go_now: Go now
+  total_active_users: Total active users
+  last_7_days: Last 7 days
+  management: Management
+  products: Products
+  customize_home: Customize Home
+  title_h2: Title
+  placeholder_title_h2: Write your title here
+  slogan_h2: Slogan
+  placeholder_slogan_h2: Write your slogan here
+  Upload_mp4_file: Upload MP4 file
+  text_color: Text color
+  save: Save
+  clear: Clear
+  are_you_sure: Are you sure you want to clear the home video?
+  panel_title: Admin Panel
+
+  #TODO: ADMIN USERS
+  users: Users
+  filter_city: Filter by city
+  search_name: Search by name
+  city: City
+  name: name
+  address: Address
+  created: Created
+  role: Role
+  actions: Actions
+  add_user: Add User
+  all: all
 
 #TODO: Recuperar contraseña
   forgot_password_title: "Forgot your password?"

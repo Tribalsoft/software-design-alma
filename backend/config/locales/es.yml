@@ -1,35 +1,31 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 es:
   activerecord:
     errors:
+      messages:
+        record_invalid: "La validación falló: %{errors}"
+        taken: "ya ha sido tomado"
+        blank: "no puede estar en blanco"
+        invalid: "no es válido"
+        too_short: "es demasiado corto (mínimo %{count} caracteres)"
+        too_long: "es demasiado largo (máximo %{count} caracteres)"
+        wrong_length: "tiene una longitud incorrecta (debe tener %{count} caracteres)"
+        not_a_number: "no es un número"
+        greater_than: "debe ser mayor que %{count}"
+        greater_than_or_equal_to: "debe ser mayor o igual a %{count}"
+        equal_to: "debe ser igual a %{count}"
+        less_than: "debe ser menor que %{count}"
+        less_than_or_equal_to: "debe ser menor o igual a %{count}"
+        other_than: "debe ser distinto de %{count}"
+        odd: "debe ser impar"
+        even: "debe ser par"
+        confirmation: "no coincide con la confirmación"
+        accepted: "debe ser aceptado"
+        empty: "no puede estar vacío"
+        present: "debe estar vacío"
+        inclusion: "no está incluido en la lista"
+        exclusion: "está reservado"
+        required: "es obligatorio"
+        taken_in_scope: "ya ha sido tomado en este contexto"
       models:
         category:
           attributes:
@@ -66,6 +62,12 @@ es:
               blank: "La categoría del producto es obligatoria"
             image:
               blank: "La imagen del producto es obligatoria"
+        categories:
+          attributes:
+            name:
+              blank: "El nombre de la categoría es obligatorio"
+            image:
+              blank: "La imagen de la categoría es obligatoria"
 
   #TODO: Titulo
   title: Diseños Alma
@@ -155,6 +157,22 @@ es:
   Upload_mp4_file: Subir archivo MP4
   text_color: Color del texto
   save: Guardar
+  clear: Limpiar
+  are_you_sure: ¿Estás seguro? Esto eliminará todos los videos.
+  panel_title: Panel de Administración
+
+  #TODO: ADMIN USERS
+  title: Usuarios
+  filter_city: Filtrar por ciudad
+  search_name: Buscar por nombre
+  city: Ciudad
+  name: Nombre
+  address: Dirección
+  created: Creado
+  role: Rol
+  actions: Acciones
+  add_user: Agregar Usuario
+  all: Todas
 
   #TODO: Recuperar contraseña
   forgot_password_title: "¿Olvidaste tu contraseña?"
