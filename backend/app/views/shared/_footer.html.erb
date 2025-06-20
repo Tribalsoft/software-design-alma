@@ -1,53 +1,46 @@
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-logo">
-      <%= image_tag 'logo.png', alt: 'Logo Empresa' %>
-      <p>© 2025 Diseños Alma. Todos los derechos reservados.</p>
-    </div>
+  <%= image_tag 'logo.png', alt: 'Logo Empresa' %>
+  <p>© 2025 <%= t('footer.company_name') %>. </p>
+  </p> <%= t('footer.rights_reserved') %></p>
+</div>
 
-    <div class="footer-section">
-      <h3>Tienda:</h3>
-      <ul>
-        <li><a href="#">Novedades</a></li>
-        <li><a href="#">Ropa</a></li>
-        <li><a href="#">Accesorios</a></li>
-        <li><a href="#">Ofertas</a></li>
-      </ul>
-    </div>
+<div class="footer-section">
+  <h3><%= t('footer.store') %></h3>
+  <ul>
+    <li><a href="#"><%= t('footer.novedades') %></a></li>
+    <li><a href="#"><%= t('footer.ropa') %></a></li>
+    <li><a href="#"><%= t('footer.accesorios') %></a></li>
+    <li><a href="#"><%= t('footer.ofertas') %></a></li>
+  </ul>
+</div>
 
-    <div class="footer-section">
-      <h3>Ayuda:</h3>
-      <ul>
-        <li><a href="#">Envíos</a></li>
-        <li><a href="#">Devoluciones</a></li>
-        <li><a href="#">Preguntas frecuentes</a></li>
-        <li><a href="#">Contáctanos</a></li>
-      </ul>
-    </div>
+<div class="footer-section">
+  <h3><%= t('footer.help') %></h3>
+  <ul>
+    <li><a href="#"><%= t('footer.envios') %></a></li>
+    <li><a href="#"><%= t('footer.devoluciones') %></a></li>
+    <li><a href="#"><%= t('footer.faq') %></a></li>
+  </ul>
+</div>
 
-    <div class="footer-section">
-      <h3>Cuenta:</h3>
-      <ul>
-        <li><a href="#">Iniciar sesión</a></li>
-        <li><a href="#">Registrarse</a></li>
-        <li><a href="#">Historial</a></li>
-      </ul>
-    </div>
+<div class="footer-section">
+  <h3><%= t('footer.account') %></h3>
+  <ul>
+    <li><a href="#"><%= t('footer.login') %></a></li>
+    <li><a href="#"><%= t('footer.register') %></a></li>
+    <li><a href="#"><%= t('footer.history') %></a></li>
+  </ul>
+</div>
 
-    
-
-   <div class="footer-section">
-  <h3>Síguenos</h3>
+<div class="footer-section">
+  <h3><%= t('footer.follow_us') %></h3>
   <div class="footer-social">
-    <a href="https://instagram.com" target="_blank" aria-label="Instagram">
-      <i class="bi bi-instagram"></i>
-    </a>
-    <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-      <i class="bi bi-twitter-x"></i>
-    </a>
+    <a href="https://instagram.com" target="_blank" aria-label="Instagram"">
+    <i class="bi bi-instagram"></i></a>
     <a href="https://facebook.com" target="_blank" aria-label="Facebook">
-      <i class="bi bi-facebook"></i>
-    </a>
+    <i class="bi bi-facebook"></i></a>
   </div>
 </div>
 </div>

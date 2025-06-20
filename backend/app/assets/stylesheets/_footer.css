@@ -65,7 +65,7 @@ footer.footer {
     transition: transform 0.3s ease, color 0.3s ease;
 
     &:hover {
-      color: #aaaaaa; // Gris claro al pasar el mouse
+      color: #aaaaaa;  
       transform: scale(1.2);
     }
   }
