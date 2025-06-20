@@ -12,10 +12,11 @@ class Admin::CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
+
     if @category.save
-      redirect_to admin_categories_path, notice: "Categoría creada exitosamente."
+      redirect_to admin_categories_path, notice: "Categoría creada correctamente."
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
