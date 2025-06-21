@@ -54,45 +54,21 @@
   </head>
 
   <body>
-    <!-- Barra de navegación -->
+    <!-- NavBar -->
     <% unless controller_path.starts_with?("admin/") %>
       <%= render 'shared/navbar' %>
     <% end %>
 
     <%= turbo_stream_from "cart" %>
 
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
 
-    <!-- Panel lateral del carrito -->
+    <!-- SideCar -->
     <%= render 'shared/side_cart' %>
 
-    <!-- Footer insertado -->
+    <!-- Footer -->
     <%= render 'shared/footer' %>
-
-   <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const footer = document.querySelector("footer.footer");
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight;
-      const documentHeight = document.body.offsetHeight;
-
-      // Mostrar footer si estás cerca del fondo
-      if (scrollPosition >= documentHeight - 150) {
-        footer.classList.add("footer-visible");
-        footer.classList.remove("footer-hidden");
-      } else {
-        footer.classList.remove("footer-visible");
-        footer.classList.add("footer-hidden");
-      }
-    };
-
-    if (footer) {
-      window.addEventListener("scroll", handleScroll);
-      handleScroll(); // Llamar al cargar la página
-    }
-  });
-</script>
-
   </body>
 </html>

@@ -8,8 +8,17 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+html,
 body {
   font-family: "Poppins", sans-serif;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 .ci {
@@ -20,5 +29,3 @@ body {
   background-color: black;
   height: 3px;
 }
-
-
