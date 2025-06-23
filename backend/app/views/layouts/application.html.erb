@@ -59,16 +59,18 @@
     </style>
   </head>
 
-  <body>
-    <!-- Barra de navegación -->
+<body>
+    <%# Barra de navegación, omitida en admin %>
     <% unless controller_path.starts_with?("admin/") %>
       <%= render 'shared/navbar' %>
     <% end %>
-    
+
+    <%# Turbo Stream para recibir actualizaciones del carrito %>
     <%= turbo_stream_from "cart" %>
 
     <%= yield %>
-    <!-- Panel lateral del carrito -->
+
+    <%# Panel lateral del carrito, presente en todas las vistas %>
     <%= render 'shared/side_cart' %>
   </body>
 </html>

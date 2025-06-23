@@ -29,41 +29,51 @@ class CartItemsController < ApplicationController
   
 
   def destroy
-  item = current_cart.cart_items.find(params[:id])
-  item_id = item.id
-  item.destroy
-  current_cart.reload
+    item = current_cart.cart_items.find(params[:id])
+    item_id = item.id
+    item.destroy
+    current_cart.reload
 
-  cart_count = current_cart.cart_items.sum(:quantity)
+    cart_count = current_cart.cart_items.sum(:quantity)
 
-  respond_to do |format|
-    format.turbo_stream do
-      render turbo_stream: [
-        turbo_stream.remove("cart_item_#{item_id}"),
-        turbo_stream.replace("cart_count", partial: "shared/cart_count"),
-        turbo_stream.replace("total_price", partial: "shared/total_price"),
+    respond_to do |format|
+      format.turbo_stream do
+        streams = []
 
-        # Actualiza ícono para escritorio
-        turbo_stream.replace("cart_icon_xl", partial: "shared/cart_icon", locals: {
+        # Remueve el item eliminado
+        streams << turbo_stream.remove("cart_item_#{item_id}")
+
+        # Actualiza el contador del carrito
+        streams << turbo_stream.replace("cart_count", partial: "shared/cart_count")
+
+        # Actualiza el precio total si aún hay ítems
+        streams << turbo_stream.replace("total_price", partial: "shared/total_price")
+
+        # Íconos del carrito
+        streams << turbo_stream.replace("cart_icon_xl", partial: "shared/cart_icon", locals: {
           icon_id: "cart-toggle-xl",
           extra_classes: "d-none d-lg-flex",
           cart_items_count: cart_count
-        }),
+        })
 
-        # Actualiza ícono para mobile
-        turbo_stream.replace("cart_icon_mobile", partial: "shared/cart_icon", locals: {
+        streams << turbo_stream.replace("cart_icon_mobile", partial: "shared/cart_icon", locals: {
           icon_id: "cart-toggle",
           extra_classes: "d-lg-none",
           cart_items_count: cart_count
         })
-      ]
+
+        # Si el carrito queda vacío, se reemplaza todo el contenedor y se reinyecta el script
+        if current_cart.cart_items.empty?
+          streams << turbo_stream.replace("side_cart_content", partial: "shared/side_cart_empty_content")
+          streams << turbo_stream.replace("total_price", partial: "shared/side_cart_footer_empty")
+        end
+
+        render turbo_stream: streams
+      end
+
+      format.html { redirect_back fallback_location: root_path }
     end
-    format.html { redirect_back fallback_location: root_path }
   end
-end
-
-
-
 
 
   def show
