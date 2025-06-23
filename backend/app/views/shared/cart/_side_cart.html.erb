@@ -15,7 +15,7 @@
 
   <!-- Content -->
   <turbo-frame id="side_cart_content" class="side-cart-content p-3 flex-grow-1 overflow-auto">
-    <%= render partial: 'shared/side_cart_content' %>
+    <%= render partial: 'shared/cart/side_cart_content' %>
   </turbo-frame>
 
   <!-- Footer -->
@@ -33,10 +33,8 @@
     <% end %>
   <% end %>
 </div>
-
 <script>
   function attachCartListeners() {
-    console.log("[CART] attachCartListeners");
     const loadingBar = document.getElementById("cart-loading-bar");
 
     function showCartLoadingBar() {
@@ -80,11 +78,6 @@
   }
 
   function attachCartToggleEvents() {
-    console.log("[CART] attachCartToggleEvents");
-
-    const cartToggle = document.getElementById("cart-toggle");
-    const cartToggleXL = document.getElementById("cart-toggle-xl");
-    const cartClose = document.getElementById("cart-close");
     const sideCart = document.getElementById("side-cart");
 
     function openCart() {
@@ -103,19 +96,21 @@
       }, 300);
     }
 
-    if (cartToggle) {
-      cartToggle.removeEventListener("click", openCart);
-      cartToggle.addEventListener("click", openCart);
-    }
+    // Delegated events so clicks still work after Turbo replaces elements
+    document.removeEventListener("click", handleCartToggleClick);
+    document.addEventListener("click", handleCartToggleClick);
 
-    if (cartToggleXL) {
-      cartToggleXL.removeEventListener("click", openCart);
-      cartToggleXL.addEventListener("click", openCart);
-    }
+    function handleCartToggleClick(e) {
+      const target = e.target;
+      if (!target) return;
 
-    if (cartClose) {
-      cartClose.removeEventListener("click", closeCart);
-      cartClose.addEventListener("click", closeCart);
+      if (target.id === "cart-toggle" || target.id === "cart-toggle-xl") {
+        openCart();
+      }
+
+      if (target.id === "cart-close") {
+        closeCart();
+      }
     }
 
     const itemAddedMeta = document.querySelector('meta[name="cart-item-added"]');
@@ -130,7 +125,10 @@
   });
 
   document.addEventListener("turbo:frame-load", (event) => {
-    const ids = ["cart_icon", "cart_script_frame", "side_cart_content", "total_price"];
+    const ids = [
+      "cart_icon_xl", "cart_icon_mobile",
+      "side_cart_content", "total_price", "side_cart_wrapper"
+    ];
     if (ids.includes(event.target.id)) {
       attachCartListeners();
       attachCartToggleEvents();

@@ -44,19 +44,19 @@ class CartItemsController < ApplicationController
         streams << turbo_stream.remove("cart_item_#{item_id}")
 
         # Actualiza el contador del carrito
-        streams << turbo_stream.replace("cart_count", partial: "shared/cart_count")
+        streams << turbo_stream.replace("cart_count", partial: "shared/cart/cart_count")
 
         # Actualiza el precio total si aún hay ítems
-        streams << turbo_stream.replace("total_price", partial: "shared/total_price")
+        streams << turbo_stream.replace("total_price", partial: "shared/cart/total_price")
 
         # Íconos del carrito
-        streams << turbo_stream.replace("cart_icon_xl", partial: "shared/cart_icon", locals: {
+        streams << turbo_stream.replace("cart_icon_xl", partial: "shared/cart/cart_icon", locals: {
           icon_id: "cart-toggle-xl",
           extra_classes: "d-none d-lg-flex",
           cart_items_count: cart_count
         })
 
-        streams << turbo_stream.replace("cart_icon_mobile", partial: "shared/cart_icon", locals: {
+        streams << turbo_stream.replace("cart_icon_mobile", partial: "shared/cart/cart_icon", locals: {
           icon_id: "cart-toggle",
           extra_classes: "d-lg-none",
           cart_items_count: cart_count
@@ -64,8 +64,8 @@ class CartItemsController < ApplicationController
 
         # Si el carrito queda vacío, se reemplaza todo el contenedor y se reinyecta el script
         if current_cart.cart_items.empty?
-          streams << turbo_stream.replace("side_cart_content", partial: "shared/side_cart_empty_content")
-          streams << turbo_stream.replace("total_price", partial: "shared/side_cart_footer_empty")
+          streams << turbo_stream.replace("side_cart_content", partial: "shared/cart/side_cart_empty_content")
+          streams << turbo_stream.replace("total_price", partial: "shared/cart/side_cart_footer_empty")
         end
 
         render turbo_stream: streams
@@ -103,24 +103,24 @@ class CartItemsController < ApplicationController
           streams << turbo_stream.remove("cart_item_#{@cart_item.id}")
         end
 
-        streams << turbo_stream.replace("cart_count", partial: "shared/cart_count")
-        streams << turbo_stream.replace("total_price", partial: "shared/total_price")
+        streams << turbo_stream.replace("cart_count", partial: "shared/cart/cart_count")
+        streams << turbo_stream.replace("total_price", partial: "shared/cart/total_price")
 
-        streams << turbo_stream.replace("cart_icon_xl", partial: "shared/cart_icon", locals: {
+        streams << turbo_stream.replace("cart_icon_xl", partial: "shared/cart/cart_icon", locals: {
           icon_id: "cart-toggle-xl",
           extra_classes: "d-none d-lg-flex",
           cart_items_count: cart_count
         })
 
-        streams << turbo_stream.replace("cart_icon_mobile", partial: "shared/cart_icon", locals: {
+        streams << turbo_stream.replace("cart_icon_mobile", partial: "shared/cart/cart_icon", locals: {
           icon_id: "cart-toggle",
           extra_classes: "d-lg-none",
           cart_items_count: cart_count
         })
 
         if current_cart.cart_items.empty?
-          streams << turbo_stream.replace("side_cart_content", partial: "shared/side_cart_empty_content")
-          streams << turbo_stream.replace("total_price", partial: "shared/side_cart_footer_empty")
+          streams << turbo_stream.replace("side_cart_content", partial: "shared/cart/side_cart_empty_content")
+          streams << turbo_stream.replace("total_price", partial: "shared/cart/side_cart_footer_empty")
         end
 
         render turbo_stream: streams
