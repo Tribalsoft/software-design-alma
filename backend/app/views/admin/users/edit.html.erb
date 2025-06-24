@@ -25,6 +25,11 @@
   </div>
 
   <div class="mb-3">
+    <%= form.label :phone, "Télefono" %>
+    <%= form.text_field :phone, class: "form-control", value: @user.phone %>
+  </div>
+
+  <div class="mb-3">
     <%= form.label :email, "Email" %>
     <%= form.email_field :email, class: "form-control", value: @user.email %>
   </div>
