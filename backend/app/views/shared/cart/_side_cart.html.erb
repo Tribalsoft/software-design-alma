@@ -1,37 +1,40 @@
-<div id="side-cart" class="side-cart hidden">
-  <!-- Loading Bar -->
-  <div id="cart-loading-bar" style="height: 3px; background: black; width: 0%; transition: width 0.3s ease;"></div>
+<div id="side-cart-overlay" class="side-cart-overlay hidden">
+  <div id="side-cart" class="side-cart hidden">
+    <!-- Loading Bar -->
+    <div id="cart-loading-bar" style="height: 3px; background: black; width: 0%; transition: width 0.3s ease;"></div>
 
-  <!-- Header -->
-  <div class="side-cart-header d-flex justify-content-between align-items-center p-3 border-bottom">
-    <h5 class="mb-0">
-      <strong><%= t("cart") %></strong>
-      (<%= turbo_frame_tag "cart_count" do %>
-        <span><%= current_cart.cart_items.sum(:quantity) rescue 0 %></span>
-      <% end %> <%= t("items") %>)
-    </h5>
-    <button id="cart-close" class="btn-close text-white" aria-label="Close"></button>
-  </div>
-
-  <!-- Content -->
-  <turbo-frame id="side_cart_content" class="side-cart-content p-3 flex-grow-1 overflow-auto">
-    <%= render partial: 'shared/cart/side_cart_content' %>
-  </turbo-frame>
-
-  <!-- Footer -->
-  <% if current_cart.cart_items.empty? %>
-    <div class="side-cart-footer p-3 border-top w-100">
-      <%= link_to t("shop_all"), categories_path(locale: I18n.locale), class: "cart-button mb-2 w-100" %>
-      <%= link_to t("home"), root_path(locale: I18n.locale), class: "cart-button mb-2 w-100" %>
+    <!-- Header -->
+    <div class="side-cart-header d-flex justify-content-between align-items-center p-3 border-bottom">
+      <h5 class="mb-0">
+        <strong><%= t("cart") %></strong>
+        (<%= turbo_frame_tag "cart_count" do %>
+          <span><%= current_cart.cart_items.sum(:quantity) rescue 0 %></span>
+        <% end %> <%= t("items") %>)
+      </h5>
+      <button id="cart-close" class="custom-btn-close" aria-label="Close">
+      </button>
     </div>
-  <% else %>
-    <%= turbo_frame_tag "total_price" do %>
-      <% total_price = number_to_currency(current_cart.cart_items.sum { |item| item.product.price * item.quantity }, precision: 0) %>
-      <div class="side-cart-footer p-3 border-top w-100 d-flex justify-content-between align-items-center">
-        <%= link_to "#{t("checkout")} #{total_price}", categories_path(locale: I18n.locale), class: "cart-button ms-2" %>
+
+    <!-- Content -->
+    <turbo-frame id="side_cart_content" class="side-cart-content p-3 flex-grow-1 overflow-auto">
+      <%= render partial: 'shared/cart/side_cart_content' %>
+    </turbo-frame>
+
+    <!-- Footer -->
+    <% if current_cart.cart_items.empty? %>
+      <div class="side-cart-footer p-3 border-top w-100">
+        <%= link_to t("shop_all"), categories_path(locale: I18n.locale), class: "cart-button mb-2 w-100" %>
+        <%= link_to t("home"), root_path(locale: I18n.locale), class: "cart-button mb-2 w-100" %>
       </div>
+    <% else %>
+      <%= turbo_frame_tag "total_price" do %>
+        <% total_price = number_to_currency(current_cart.cart_items.sum { |item| item.product.price * item.quantity }, precision: 0) %>
+        <div class="side-cart-footer p-3 border-top w-100 d-flex justify-content-between align-items-center">
+          <%= link_to "#{t("checkout")} #{total_price}", categories_path(locale: I18n.locale), class: "cart-button ms-2" %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
 <script>
   function attachCartListeners() {
@@ -78,10 +81,24 @@
   }
 
   function attachCartToggleEvents() {
+    const overlay = document.getElementById("side-cart-overlay");
+    if (overlay) {
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closeCart(); // solo cerrar si tocó fuera del carrito
+      });
+    }
+
     const sideCart = document.getElementById("side-cart");
 
     function openCart() {
-      if (!sideCart) return;
+      const overlay = document.getElementById("side-cart-overlay");
+      const sideCart = document.getElementById("side-cart");
+      if (!overlay || !sideCart) return;
+
+      overlay.classList.remove("hidden");
+      requestAnimationFrame(() => {
+        overlay.classList.add("visible");
+      });
       sideCart.classList.remove("hidden");
       requestAnimationFrame(() => {
         sideCart.classList.add("open");
@@ -89,9 +106,16 @@
     }
 
     function closeCart() {
-      if (!sideCart) return;
+      const overlay = document.getElementById("side-cart-overlay");
+      const sideCart = document.getElementById("side-cart");
+      if (!overlay || !sideCart) return;
+
       sideCart.classList.remove("open");
       setTimeout(() => {
+        overlay.classList.remove("visible");
+        setTimeout(() => {
+          overlay.classList.add("hidden");
+        }, 300); // i
         sideCart.classList.add("hidden");
       }, 300);
     }
