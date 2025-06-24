@@ -8,7 +8,21 @@ import { initChangeLanguage } from "custom/init_change_lenguage";
 import { initChartJsUsersLastMonth } from "custom/init_chart_js_users_last_month";
 import { initCarouselImages } from "custom/init_carousel_images";
 
+// Mostrar el loader al iniciar una navegación Turbo
+document.addEventListener("turbo:visit", () => {
+  const loader = document.getElementById("loading-overlay");
+  if (loader) loader.classList.remove("hidden");
+});
+
+// Ocultar el loader al terminar la carga
 document.addEventListener("turbo:load", () => {
+  const loader = document.getElementById("loading-overlay");
+  if (loader) {
+    setTimeout(() => {
+      loader.classList.add("hidden");
+    }, 100); // ajusta el delay si quieres
+  }
+
   //* === Iconos ===
   try {
     if (window.feather) feather.replace();
@@ -27,7 +41,7 @@ document.addEventListener("turbo:load", () => {
   try {
     initDarkMode();
   } catch (e) {
-    console.warn("Sidebar error:", e);
+    console.warn("Dark mode error:", e);
   }
 
   //* === CAMBIO DE IDIOMA ===
