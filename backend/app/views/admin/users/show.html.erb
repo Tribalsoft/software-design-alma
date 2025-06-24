@@ -7,6 +7,7 @@
     <p><strong>Apellido:</strong> <%= @user.last_name %></p>
     <p><strong>Ciudad:</strong> <%= @user.city %></p>
     <p><strong>Dirección:</strong> <%= @user.address %></p>
+    <p><strong>Telefono:</strong> <%= @user.phone %></p>
     <p><strong>Email:</strong> <%= @user.email %></p>
     <p><strong>Rol:</strong> <%= @user.admin? ? "Admin" : "User" %></p>
     <p><strong>Creado el:</strong> <%= @user.created_at.strftime("%Y-%m-%d") %></p>
