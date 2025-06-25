@@ -10,11 +10,29 @@
  */
 html,
 body {
+  background-color: whitesmoke;
   font-family: "Poppins", sans-serif;
   height: 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
+}
+
+.c-scroll {
+  position: relative;
+  z-index: 1;
+  background-color: white;
+  border-bottom-left-radius: 37px;
+  border-bottom-right-radius: 37px;
+}
+
+body[data-theme="dark"] .c-scroll {
+  background-color: #121212;
+}
+
+body[data-theme="light"] body,
+html {
+  background-color: #0f0f0f;
 }
 
 main {

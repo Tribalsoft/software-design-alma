@@ -54,20 +54,22 @@
   </head>
 
   <body>
-    <!-- NavBar -->
-    <% unless controller_path.starts_with?("admin/") %>
-      <%= render 'shared/navbar' %>
-    <% end %>
+    <div class="c-scroll">
+      <!-- NavBar -->
+      <% unless controller_path.starts_with?("admin/") %>
+        <%= render 'shared/navbar' %>
+      <% end %>
 
-    <%= turbo_stream_from "cart" %>
+      <%= turbo_stream_from "cart" %>
 
-    <main>
-      <%= yield %>
-    </main>
+      <main>
+        <%= yield %>
+      </main>
 
-    <!-- SideCar -->
-    <%= render 'shared/side_cart' %>
+      <!-- SideCar -->
+      <%= render 'shared/side_cart' %>
 
+    </div>
     <!-- Footer -->
     <%= render 'shared/footer' %>
   </body>
