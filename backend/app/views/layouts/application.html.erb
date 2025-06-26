@@ -60,7 +60,11 @@
         <%= render 'shared/navbar' %>
       <% end %>
 
-      <%= turbo_stream_from "cart" %>
+    <div id="loading-overlay" class="loading-overlay">
+      <img src="<%= asset_path('loader_logo.png') %>" alt="Loading..." class="loading-logo">
+    </div>
+
+    <%= turbo_stream_from "cart" %>
 
       <main>
         <%= yield %>
