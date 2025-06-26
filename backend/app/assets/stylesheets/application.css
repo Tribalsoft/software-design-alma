@@ -35,6 +35,11 @@ html {
   background-color: #0f0f0f;
 }
 
+body[data-theme="dark"] body,
+html {
+  background-color: whitesmoke;
+}
+
 main {
   flex: 1;
 }
