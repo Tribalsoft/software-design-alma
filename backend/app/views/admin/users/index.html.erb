@@ -72,6 +72,7 @@
           <th style="width: 50%;"><%= t('name') %></th>
           <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;"><%= t('city') %></th>
           <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;"><%= t('address') %></th>
+          <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;"><%= t('phone') %></th>
           <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;"><%= t('created') %></th>
           <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;"><%= t('role') %></th>
           <th class="d-none d-md-table-cell text-center text-nowrap" style="width: 10%;"><%= t('actions') %></th>
@@ -95,6 +96,7 @@
             <!-- Estas columnas solo en pantallas grandes -->
             <td class="d-none d-md-table-cell text-center text-nowrap px-1"><%= user.city %></td>
             <td class="d-none d-md-table-cell text-center text-nowrap px-1"><%= user.address %></td>
+            <td class="d-none d-md-table-cell text-center text-nowrap px-1"><%= user.phone %></td>
             <td class="d-none d-md-table-cell text-center text-nowrap px-1"><%= user.created_at.strftime("%Y-%m-%d") %></td>
             <td class="d-none d-md-table-cell text-center text-nowrap px-1">
               <span class="badge <%= user.admin? ? 'bg-danger-ok' : 'bg-secondary-ok' %>">
