@@ -10,12 +10,23 @@
  */
 html,
 body {
-  background-color: whitesmoke;
   font-family: "Poppins", sans-serif;
   height: 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
+}
+
+/* 2. Tema claro */
+body[data-theme="light"],
+html[data-theme="light"] {
+  background-color: #0f0f0f !important;
+}
+
+/* 3. Tema oscuro */
+body[data-theme="dark"],
+html[data-theme="dark"] {
+  background-color: whitesmoke !important;
 }
 
 .c-scroll {
@@ -28,16 +39,6 @@ body {
 
 body[data-theme="dark"] .c-scroll {
   background-color: #121212;
-}
-
-body[data-theme="light"] body,
-html {
-  background-color: #0f0f0f;
-}
-
-body[data-theme="dark"] body,
-html {
-  background-color: whitesmoke;
 }
 
 main {
