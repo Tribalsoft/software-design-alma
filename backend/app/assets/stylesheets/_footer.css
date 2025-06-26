@@ -1,7 +1,7 @@
 .footer {
   background-color: #0f0f0f;
   color: white;
-  padding: 40px 13rem;
+  padding: 40px 8rem;
   font-family: "Poppins", sans-serif;
   will-change: opacity, transform;
   position: sticky;
@@ -73,4 +73,50 @@ body[data-theme="dark"] .bi-pe {
 
 body[data-theme="dark"] .footer-logo {
   filter: brightness(0) grayscale(100%) contrast(100%);
+}
+
+/* Tablet: quitar padding lateral */
+@media (max-width: 1024px) {
+  .footer {
+    padding: 40px 0;
+  }
+}
+
+/* Celular: alinear contenido, reducir tipografía */
+@media (max-width: 767px) {
+  .footer {
+    padding: 30px 1rem;
+    font-size: 0.85rem;
+  }
+
+  .footer .d-flex.justify-content-between.align-items-center {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 1rem;
+  }
+
+  .footer .footer-social {
+    justify-content: flex-start !important;
+  }
+
+  .footer .column.text-end {
+    text-align: left !important;
+    width: 100%;
+  }
+
+  .footer .column.text-end ul {
+    justify-content: flex-start !important;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .footer .column.text-end ul li a {
+    font-size: 0.8rem;
+  }
+
+  .footer-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
 }
