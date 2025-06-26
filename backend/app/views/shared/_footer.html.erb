@@ -1,54 +1,30 @@
 <footer class="footer">
-  <div class="footer-container">
+  <!-- Logo --->
+  <div class="d-flex justify-content-center">
     <div class="footer-logo">
-  <%= image_tag 'logo.png', alt: 'Logo Empresa' %>
-  <p>© 2025 <%= t('footer.company_name') %>. </p>
-  </p> <%= t('footer.rights_reserved') %></p>
-</div>
-
-<div class="footer-section">
-  <h3><%= t('footer.store') %></h3>
-  <ul>
-    <li><a href="#"><%= t('footer.novedades') %></a></li>
-    <li><a href="#"><%= t('footer.ropa') %></a></li>
-    <li><a href="#"><%= t('footer.accesorios') %></a></li>
-    <li><a href="#"><%= t('footer.ofertas') %></a></li>
-  </ul>
-</div>
-
-<div class="footer-section">
-  <h3><%= t('footer.help') %></h3>
-  <ul>
-    <li><a href="#"><%= t('footer.envios') %></a></li>
-    <li><a href="#"><%= t('footer.devoluciones') %></a></li>
-    <li><a href="#"><%= t('footer.faq') %></a></li>
-  </ul>
-</div>
-
-<div class="footer-section">
-  <h3><%= t('footer.account') %></h3>
-  <ul>
-    <li><a href="#"><%= t('footer.login') %></a></li>
-    <li><a href="#"><%= t('footer.register') %></a></li>
-    <li><a href="#"><%= t('footer.history') %></a></li>
-  </ul>
-</div>
-
-<div class="footer-section">
-  <h3><%= t('footer.follow_us') %></h3>
-  <div class="footer-social">
-    <a href="https://instagram.com/disenosyestampados_alma?igsh=MXI5ZnRtM2RxbTQzcg==" target="_blank" aria-label="Instagram"">
-    <i class="bi bi-instagram"></i></a>
-    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
-    <i class="bi bi-facebook"></i></a>
+      <%= image_tag 'logo.png', alt: 'Logo Empresa' %>
+    </div>
   </div>
-</div>
-</div>
+  <!----->
+  <div class="d-flex justify-content-between align-items-center">
 
-  <footer class="footer footer-hidden">
-  <div class="footer-container">
-    <!-- Contenido como antes -->
+    <div class="footer-social">
+      <a href="https://instagram.com/disenosyestampados_alma" target="_blank" aria-label="Instagram">
+      <i class="bi bi-pe bi-instagram"></i></a>
+    </div>
+
+    <div class="column text-end fs-7">
+      <p>© 2025 <%= t('footer.company_name') %>.</p>
+      <div class="d-flex flex-row">
+        <ul class="list-unstyled d-flex flex-row gap-3 mb-0">
+          <li><a class="text-dn" href="#"><%= t('footer.search') %></a></li>
+          <li><a class="text-dn" href="#"><%= t('footer.privacy_policy') %></a></li>
+          <li><a class="text-dn" href="#"><%= t('footer.redund_policy') %></a></li>
+          <li><a class="text-dn" href="#"><%= t('footer.shipping_policy') %></a></li>
+          <li><a class="text-dn" href="#"><%= t('footer.terms_of_service') %></a></li>
+          <li><a class="text-dn" href="#"><%= t('footer.contact_us') %></a></li>
+        </ul>
+      </div>
+    </div>
   </div>
-</footer>
-
 </footer>

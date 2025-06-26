@@ -2,6 +2,10 @@
   height: 40%;
 }
 
+.mb-6 {
+  margin-bottom: 10rem;
+}
+
 .color-green {
   color: #28a745; /* Verde brillante */
 }
