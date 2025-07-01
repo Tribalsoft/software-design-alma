@@ -91,7 +91,7 @@
           <% @latest_products.each do |product| %>
             <div class="col-10 col-md-6 col-lg-3 mb-3 px-2 d-flex justify-content-center">
               <div class="w-100 h-100" style="max-width: 300px;">
-                <%= link_to category_product_path(product.category_id, product.id), class: "image-zoom-container d-block" do %>
+                <%= link_to category_product_path(product.category, product), class: "image-zoom-container d-block" do %>
                   <% if product.image.attached? %>
                     <%= image_tag product.image, class: "card-img-top rounded-img", style: "height: 400px; object-fit: cover;" %>
                   <% else %>
@@ -103,7 +103,7 @@
                   <h5 class="ct card-title text-uppercase fw-bold"><%= product.name %></h5>
                 </div>
                 <div class="d-flex justify-content-between">
-                  <%= link_to category_product_path(product.category_id, product.id), class: "ver-mas text-decoration-none button d-flex align-items-center gap-2" do %>
+                  <%= link_to category_product_path(product.category, product), class: "ver-mas text-decoration-none button d-flex align-items-center gap-2" do %>
                     <%= t("show_more") %>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>

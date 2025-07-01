@@ -183,18 +183,10 @@ es:
   #TODO: Footer
   footer:
     company_name: Diseños Alma
-    rights_reserved: Todos los derechos reservados.
-    store: Tienda
-    novedades: Novedades
-    ropa: Ropa
-    accesorios: Accesorios
-    ofertas: Ofertas
-    help: Ayuda
-    envios: Envíos
-    devoluciones: Devoluciones
-    faq: Preguntas frecuentes
-    account: Cuenta
-    login: Iniciar sesión
-    register: Registrarse
-    history: Historial
-    follow_us: Síguenos
+    contact_us: Contáctanos
+    terms_of_service: Términos de servicio
+    shipping_policy: Política de envío
+    redund_policy: Política de reembolso
+    privacy_policy: Política de privacidad
+    search: Buscar
+

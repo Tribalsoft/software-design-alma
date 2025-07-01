@@ -185,18 +185,9 @@ en:
 #TODO: Footer
   footer:
     company_name: Designs Alma
-    rights_reserved: All rights reserved.
-    store: Store
-    novedades: New Arrivals
-    ropa: Clothing
-    accesorios: Accessories
-    ofertas: Deals
-    help: Help
-    envios: Shipping
-    devoluciones: Returns
-    faq: FAQ
-    account: Account
-    login: Log In
-    register: Sign Up
-    history: Order History
-    follow_us: Follow Us
+    contact_us: Contact us
+    terms_of_service: Terms of Service
+    shipping_policy: Shipping Policy
+    redund_policy: Refund Policy
+    privacy_policy: Privacy Policy
+    search: Search

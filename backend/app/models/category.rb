@@ -4,4 +4,17 @@ class Category < ApplicationRecord
   has_one_attached :image
   validates :name, presence: true
   validates :image, presence: true # Si deseas que la imagen sea obligatoria
+
+  before_validation :generate_slug
+
+  def to_param
+    slug
+  end
+
+  private
+
+  def generate_slug
+    self.slug = name.parameterize if name.present? && slug.blank?
+  end
+
 end

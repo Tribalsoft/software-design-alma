@@ -1,4 +1,8 @@
-.title-devise{
+.c-login {
+  height: 30rem;
+}
+
+.title-devise {
   font-style: italic;
   font-weight: bold;
   text-align: center;
@@ -55,7 +59,7 @@
   padding: 2rem;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 body[data-theme="dark"] .profile-container {
@@ -63,11 +67,9 @@ body[data-theme="dark"] .profile-container {
   color: #f0f0f0;
 }
 
-
 body[data-theme="dark"] .login-button {
   background-color: #fff;
   color: #000;
-  
 }
 
 /* Enlaces */
@@ -80,8 +82,8 @@ body[data-theme="dark"] .login-link {
 }
 
 .login-link {
-  color:inherit
+  color: inherit;
 }
 .login-link:hover {
-  color:inherit
+  color: inherit;
 }
