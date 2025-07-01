@@ -11,7 +11,7 @@
       <% @products.each do |product| %>
         <div class="col mb-5">
 
-          <%= link_to category_product_path(product.category_id, product.id), class: "image-zoom-container d-block" do %>
+          <%= link_to category_product_path(product.category, product), class: "image-zoom-container d-block" do %>
             <% if product.image.attached? %>
               <%= image_tag product.image, class: "card-img-top rounded-img", style: "height: 400px; object-fit: cover;" %>
             <% else %>
