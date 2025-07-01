@@ -18,12 +18,12 @@ Rails.application.routes.draw do
 
       delete 'users/bulk_delete', to: 'users#bulk_delete', as: :bulk_delete_admin_users
       resources :users, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
-      resources :categories do
+      resources :categories, param: :slug do
         resources :products
       end
     end
 
-    resources :categories do
+    resources :categories, param: :slug do
       resources :products, only: [ :index, :show ]
     end
   end
