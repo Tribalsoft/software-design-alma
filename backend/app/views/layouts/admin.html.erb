@@ -20,15 +20,17 @@
   </head>
 
   <body>
-    <button class="btn btn-outline-secondary" id="sidebarToggle">
-      <i data-feather="menu"></i>
-    </button>
+    <div style="min-height: 100vh;" class="bg-light">
+      <button class="btn btn-outline-secondary" id="sidebarToggle">
+        <i data-feather="menu"></i>
+      </button>
 
-    <div class="d-flex">
-      <%= render 'shared/sidebar' %>
+      <div class="d-flex">
+        <%= render 'shared/sidebar' %>
 
-      <div id="main-content" class="flex-grow-1 p-3">
-        <%= yield %>
+        <div id="main-content" class="flex-grow-1 p-3">
+          <%= yield %>
+        </div>
       </div>
     </div>
   </body>
