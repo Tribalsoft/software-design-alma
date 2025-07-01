@@ -93,7 +93,7 @@
   .product-price {
     font-weight: 600;
     font-size: 14px;
-    color: #000;
+    color: inherit;
     white-space: nowrap;
   }
 
@@ -198,7 +198,44 @@ body[data-theme="dark"] .descp-item {
   color: white;
 }
 
-body[data-theme="dark"] .btn-x {
-  color: white;
-  background-color: white;
+.custom-btn-close {
+  background-color: transparent;
+  border: 0;
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+  opacity: 0.7;
+  cursor: pointer;
+
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23000000' viewBox='0 0 16 16'><path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'/></svg>");
+  
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 2rem;
+}
+
+body[data-theme="dark"] .custom-btn-close {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 16 16'><path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'/></svg>");
+}
+
+.side-cart-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0); /* comienza transparente */
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1040;
+  opacity: 0;
+  pointer-events: none;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.side-cart-overlay.visible {
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.side-cart-overlay.hidden {
+  display: none;
 }
