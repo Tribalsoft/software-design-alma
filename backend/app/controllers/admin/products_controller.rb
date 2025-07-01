@@ -56,7 +56,7 @@ end
   end
 
   def set_category
-    @category = Category.find_by(id: params[:category_id])
+    @category = Category.find_by!(slug: params[:category_id] || params[:category_slug])
     redirect_to admin_categories_path, alert: "Categoría no encontrada" unless @category
   end
 
