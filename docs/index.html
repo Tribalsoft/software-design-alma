@@ -22,6 +22,10 @@
     />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="website/assets/stylesheets/styles.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
     <!-- Google Fonts: Poppins -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
@@ -76,7 +80,9 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="portfolio-item.html">Portafolio</a>
+                <a class="nav-link" href=".website/pages/portfolio-item.html"
+                  >Portafolio</a
+                >
               </li>
             </ul>
           </div>
@@ -106,7 +112,10 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+            <div
+              class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"
+              data-aos="fade-left"
+            >
               <img
                 class="img-fluid rounded-3 my-5"
                 src="website/assets/images/group/programacion.png"
@@ -120,7 +129,7 @@
       <section class="py-5" id="features">
         <div class="container px-5 my-5">
           <div class="row gx-5">
-            <div class="col-lg-4 mb-5 mb-lg-0">
+            <div class="col-lg-4 mb-5 mb-lg-0" data-aos="fade-right">
               <h2 class="fw-bolder mb-0">
                 Soluciones tecnológicas para el futuro digital
               </h2>
@@ -131,9 +140,13 @@
                 usuario.
               </p>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8" data-aos="fade-left">
               <div class="row gx-5 row-cols-1 row-cols-md-2">
-                <div class="col mb-5 h-100">
+                <div
+                  class="col mb-5 h-100"
+                  data-aos="zoom-in"
+                  data-aos-delay="100"
+                >
                   <div
                     class="feature bg-primary bg-gradient text-white rounded-3 mb-3"
                   >
@@ -146,7 +159,11 @@
                     tecnologías modernas y seguras.
                   </p>
                 </div>
-                <div class="col mb-5 h-100">
+                <div
+                  class="col mb-5 h-100"
+                  data-aos="zoom-in"
+                  data-aos-delay="200"
+                >
                   <div
                     class="feature bg-primary bg-gradient text-white rounded-3 mb-3"
                   >
@@ -158,7 +175,11 @@
                     proteger tus datos y los de tus clientes en todo momento.
                   </p>
                 </div>
-                <div class="col mb-5 mb-md-0 h-100">
+                <div
+                  class="col mb-5 mb-md-0 h-100"
+                  data-aos="zoom-in"
+                  data-aos-delay="300"
+                >
                   <div
                     class="feature bg-primary bg-gradient text-white rounded-3 mb-3"
                   >
@@ -170,7 +191,7 @@
                     con la nube y preparadas para alta demanda.
                   </p>
                 </div>
-                <div class="col h-100">
+                <div class="col h-100" data-aos="zoom-in" data-aos-delay="400">
                   <div
                     class="feature bg-primary bg-gradient text-white rounded-3 mb-3"
                   >
@@ -191,7 +212,7 @@
       <!-- Testimonial section-->
       <div class="py-5 bg-light">
         <div class="container px-5 my-5">
-          <div class="row gx-5 justify-content-center">
+          <div class="row gx-5 justify-content-center" data-aos="zoom-in-up">
             <div class="col-lg-10 col-xl-7">
               <div class="text-center">
                 <div class="fs-4 mb-4 fst-italic">
@@ -263,6 +284,10 @@
         }
       </style>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="website/assets/stylesheets/scripts.js"></script>
   </body>
