@@ -6,6 +6,7 @@ class LoginState {
   final bool isSuccess;
   final bool isFailure;
   final String? errorMessage;
+  final Map<String, dynamic>? userData;
 
   LoginState({
     required this.email,
@@ -15,6 +16,7 @@ class LoginState {
     required this.isSuccess,
     required this.isFailure,
     this.errorMessage,
+    this.userData,
   });
 
   factory LoginState.initial() => LoginState(
@@ -24,6 +26,7 @@ class LoginState {
         isSubmitting: false,
         isSuccess: false,
         isFailure: false,
+        userData: null,
       );
 
   LoginState copyWith({
@@ -34,6 +37,7 @@ class LoginState {
     bool? isSuccess,
     bool? isFailure,
     String? errorMessage,
+    Map<String, dynamic>? userData,
   }) {
     return LoginState(
       email: email ?? this.email,
@@ -43,6 +47,7 @@ class LoginState {
       isSuccess: isSuccess ?? this.isSuccess,
       isFailure: isFailure ?? this.isFailure,
       errorMessage: errorMessage,
+      userData: userData ?? this.userData,
     );
   }
 }
