@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import '../services/auth_service.dart';
+import '../services/auth_service.dart';
 import 'login_event.dart';
 import 'login_state.dart';
 
@@ -21,15 +21,25 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     on<LoginSubmitted>((event, emit) async {
       if (!state.isValid) {
-        emit(state.copyWith(isFailure: true, errorMessage: "Campos inválidos"));
+        emit(state.copyWith(
+          isFailure: true,
+          errorMessage: "Campos inválidos",
+        ));
         return;
       }
 
       emit(state.copyWith(isSubmitting: true, isFailure: false));
 
-      final success = await authService.login(state.email, state.password);
-      if (success) {
-        emit(state.copyWith(isSubmitting: false, isSuccess: true));
+      final userData = await authService.login(state.email, state.password);
+
+      if (userData != null) {
+        // Puedes guardar los datos aquí si deseas
+        // print(userData['name']); // ejemplo
+
+        emit(state.copyWith(
+          isSubmitting: false,
+          isSuccess: true,
+        ));
       } else {
         emit(state.copyWith(
           isSubmitting: false,
