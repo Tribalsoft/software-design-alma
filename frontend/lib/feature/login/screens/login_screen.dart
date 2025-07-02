@@ -6,6 +6,7 @@ import '../bloc/login_event.dart';
 import '../bloc/login_state.dart';
 import '../services/auth_service.dart';
 import '../../../routes/routes.dart';
+import '../../../app/main_scaffold.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -47,7 +48,12 @@ class LoginForm extends StatelessWidget {
                     backgroundColor: Colors.green,
                   ),
                 );
-                Navigator.of(context).pushReplacementNamed(AppRoute.profile);
+
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (_) => MainScaffold(initialIndex: 4),
+                  ),
+                );
               }
             },
             builder: (context, state) {
@@ -101,6 +107,7 @@ class LoginForm extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
 
+                  // Olvidaste contraseña
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
@@ -113,7 +120,7 @@ class LoginForm extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
 
-                  // Login button
+                  // Botón login
                   state.isSubmitting
                       ? const Center(child: CircularProgressIndicator())
                       : ElevatedButton(
@@ -137,7 +144,7 @@ class LoginForm extends StatelessWidget {
                         ),
                   const SizedBox(height: 24),
 
-                  // Divider + register link
+                  // Divider + registro
                   Row(
                     children: [
                       Expanded(
@@ -154,7 +161,7 @@ class LoginForm extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
 
-                  // Register
+                  // Botón registro
                   OutlinedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoute.register);

@@ -7,23 +7,30 @@ import '../feature/profile/pages/profile_page.dart';
 
 class MainScaffold extends StatefulWidget {
   final CategoryRepository categoryRepository = CategoryRepository();
-  
-  MainScaffold({super.key});
+  final int initialIndex;
+
+  MainScaffold({super.key, this.initialIndex = 0});
 
   @override
   State<MainScaffold> createState() => _MainScaffoldState();
 }
 
 class _MainScaffoldState extends State<MainScaffold> {
-  int _selectedIndex = 0;
+  late int _selectedIndex;
 
   final List<Widget> _pages = [
-    HomeScreen(categoryRepository: CategoryRepository(),),
+    HomeScreen(categoryRepository: CategoryRepository()),
     const HomePage(),
     const Placeholder(),
     const Placeholder(),
     const PerfilPage(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.initialIndex;
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -55,30 +62,25 @@ class _MainScaffoldState extends State<MainScaffold> {
               showUnselectedLabels: true,
               elevation: 0,
               items: const [
-                //* Icono de home
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home_outlined),
                   activeIcon: Icon(Icons.home),
                   label: 'Comprar',
                 ),
-                //* Icono de categorías
                 BottomNavigationBarItem(
                   icon: Icon(Icons.manage_search_outlined),
                   activeIcon: Icon(Icons.manage_search),
                   label: 'Categorías',
                 ),
-                //* Icono de tendencias
                 BottomNavigationBarItem(
-                  icon: SizedBox.shrink(), // espacio vacío para el centro
+                  icon: SizedBox.shrink(),
                   label: '',
                 ),
-                //* Icono de carrito
                 BottomNavigationBarItem(
                   icon: Icon(Icons.shopping_cart_outlined),
                   activeIcon: Icon(Icons.shopping_cart),
                   label: 'Carrito',
                 ),
-                //* Icono de perfil
                 BottomNavigationBarItem(
                   icon: Icon(Icons.person_outline),
                   activeIcon: Icon(Icons.person),
@@ -88,7 +90,6 @@ class _MainScaffoldState extends State<MainScaffold> {
             ),
           ),
 
-          // Ícono fuego sobresaliendo
           Positioned(
             bottom: 5,
             child: GestureDetector(
