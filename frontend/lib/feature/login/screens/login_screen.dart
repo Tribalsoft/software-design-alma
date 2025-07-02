@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../profile/pages/profile_page.dart';
 import '../bloc/login_bloc.dart';
 import '../bloc/login_event.dart';
 import '../bloc/login_state.dart';
@@ -106,7 +105,8 @@ class LoginForm extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () {
-                        // TODO: implementar recuperación de contraseña
+                        Navigator.pushNamed(
+                            context, AppRoute.forgotPassword);
                       },
                       child: const Text("¿Olvidaste tu contraseña?"),
                     ),
@@ -131,7 +131,7 @@ class LoginForm extends StatelessWidget {
                             "Iniciar sesión",
                             style: TextStyle(
                               fontSize: 16,
-                              color: Colors.white, // ✅ Corregido: texto visible
+                              color: Colors.white,
                             ),
                           ),
                         ),
@@ -157,7 +157,7 @@ class LoginForm extends StatelessWidget {
                   // Register
                   OutlinedButton(
                     onPressed: () {
-                      // TODO: implementar registro
+                      Navigator.pushNamed(context, AppRoute.register);
                     },
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),
