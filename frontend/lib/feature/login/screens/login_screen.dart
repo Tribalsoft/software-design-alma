@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../profile/pages/profile_page.dart';
 import '../bloc/login_bloc.dart';
 import '../bloc/login_event.dart';
 import '../bloc/login_state.dart';
 import '../services/auth_service.dart';
-import '../../profile/pages/profile_page.dart';
+import '../../../routes/routes.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -25,69 +26,155 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Iniciar sesión")),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: BlocConsumer<LoginBloc, LoginState>(
-          listener: (context, state) {
-            if (state.isFailure && state.errorMessage != null) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.errorMessage!),
-                  backgroundColor: Colors.red,
-                ),
-              );
-            }
-
-            if (state.isSuccess) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("¡Has iniciado sesión con éxito!"),
-                  backgroundColor: Colors.green,
-                ),
-              );
-
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (_) => const PerfilPage(),
-                ),
-              );
-            }
-          },
-          builder: (context, state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                TextField(
-                  decoration: const InputDecoration(
-                    labelText: "Email",
-                    border: OutlineInputBorder(),
+      backgroundColor: Colors.grey.shade100,
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+          child: BlocConsumer<LoginBloc, LoginState>(
+            listener: (context, state) {
+              if (state.isFailure && state.errorMessage != null) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.errorMessage!),
+                    backgroundColor: Colors.red,
                   ),
-                  onChanged: (value) =>
-                      context.read<LoginBloc>().add(EmailChanged(value)),
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  decoration: const InputDecoration(
-                    labelText: "Contraseña",
-                    border: OutlineInputBorder(),
+                );
+              }
+
+              if (state.isSuccess) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("¡Has iniciado sesión con éxito!"),
+                    backgroundColor: Colors.green,
                   ),
-                  obscureText: true,
-                  onChanged: (value) =>
-                      context.read<LoginBloc>().add(PasswordChanged(value)),
-                ),
-                const SizedBox(height: 24),
-                state.isSubmitting
-                    ? const Center(child: CircularProgressIndicator())
-                    : ElevatedButton(
-                        onPressed: () {
-                          context.read<LoginBloc>().add(LoginSubmitted());
-                        },
-                        child: const Text("Iniciar sesión"),
+                );
+                Navigator.of(context).pushReplacementNamed(AppRoute.profile);
+              }
+            },
+            builder: (context, state) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const Text(
+                    "👋 Bienvenido",
+                    style: TextStyle(
+                      fontSize: 34,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    "Ingresa tu correo y contraseña para continuar",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.grey.shade600),
+                  ),
+                  const SizedBox(height: 40),
+
+                  // Email
+                  TextFormField(
+                    decoration: InputDecoration(
+                      labelText: "Correo electrónico",
+                      prefixIcon: const Icon(Icons.email_outlined),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
-              ],
-            );
-          },
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                    onChanged: (value) =>
+                        context.read<LoginBloc>().add(EmailChanged(value)),
+                  ),
+                  const SizedBox(height: 20),
+
+                  // Password
+                  TextFormField(
+                    decoration: InputDecoration(
+                      labelText: "Contraseña",
+                      prefixIcon: const Icon(Icons.lock_outline),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    obscureText: true,
+                    onChanged: (value) =>
+                        context.read<LoginBloc>().add(PasswordChanged(value)),
+                  ),
+                  const SizedBox(height: 10),
+
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {
+                        // TODO: implementar recuperación de contraseña
+                      },
+                      child: const Text("¿Olvidaste tu contraseña?"),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+
+                  // Login button
+                  state.isSubmitting
+                      ? const Center(child: CircularProgressIndicator())
+                      : ElevatedButton(
+                          onPressed: () {
+                            context.read<LoginBloc>().add(LoginSubmitted());
+                          },
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            backgroundColor: Colors.indigo,
+                          ),
+                          child: const Text(
+                            "Iniciar sesión",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white, // ✅ Corregido: texto visible
+                            ),
+                          ),
+                        ),
+                  const SizedBox(height: 24),
+
+                  // Divider + register link
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Divider(color: Colors.grey.shade400),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Text("¿No tienes cuenta?"),
+                      ),
+                      Expanded(
+                        child: Divider(color: Colors.grey.shade400),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+
+                  // Register
+                  OutlinedButton(
+                    onPressed: () {
+                      // TODO: implementar registro
+                    },
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      side: const BorderSide(color: Colors.indigo),
+                    ),
+                    child: const Text(
+                      "Crear una cuenta",
+                      style: TextStyle(color: Colors.indigo),
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
