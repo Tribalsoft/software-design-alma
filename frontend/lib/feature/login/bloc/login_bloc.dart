@@ -33,8 +33,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       final userData = await authService.login(state.email, state.password);
 
       if (userData != null) {
-        // Puedes guardar los datos aquí si deseas
-        // print(userData['name']); // ejemplo
 
         emit(state.copyWith(
           isSubmitting: false,
