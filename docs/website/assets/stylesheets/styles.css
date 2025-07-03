@@ -10868,3 +10868,12 @@ html {
   background-repeat: no-repeat;
   min-height: 15rem;
 }
+
+.scroll-hidden {
+    overflow-x: auto;
+    -ms-overflow-style: none; /* IE y Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.scroll-hidden::-webkit-scrollbar {
+    display: none; /* Chrome, Safari y Opera */
+}
