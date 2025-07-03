@@ -123,6 +123,10 @@ en:
   add_to_cart: Add to cart
   no_products: This category has no products available
   show_more: Show more
+  product:
+    low_stock_plural: Hurry up, only %{count} units left!
+    low_stock_singular: Hurry up, only 1 unit left!
+
 
   #TODO: Carrito
   cart: CART

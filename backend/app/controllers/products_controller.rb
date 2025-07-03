@@ -1,12 +1,18 @@
 class ProductsController < ApplicationController
+  before_action :set_category
+
   def index
     @categories = Category.all
-    @category = Category.find(params[:category_id])
     @products = @category.products
   end
   
   def show
-    @category = Category.find(params[:category_id])
     @product = @category.products.find(params[:id])
+  end
+
+  private
+
+  def set_category
+    @category = Category.find_by!(slug: params[:category_slug] || params[:category_id])
   end
 end

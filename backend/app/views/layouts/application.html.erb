@@ -64,14 +64,14 @@
       <img src="<%= asset_path('loader_logo.png') %>" alt="Loading..." class="loading-logo">
     </div>
 
-    <%= turbo_stream_from "cart" %>
+      <%= turbo_stream_from "cart" %>
 
       <main>
         <%= yield %>
       </main>
 
       <!-- SideCar -->
-      <%= render 'shared/side_cart' %>
+      <%= render 'shared/cart/side_cart' %>
 
     </div>
     <!-- Footer -->
