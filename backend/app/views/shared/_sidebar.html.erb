@@ -1,46 +1,24 @@
-<% is_user_active = (
-  controller_name == "users" &&
-  action_name.in?(%w[index edit])
-) || current_page?(new_admin_user_path) ||
-  (params[:id].present? && controller_name == "users" && current_page?(admin_user_path(params[:id]))) %>
-
-<% is_category_active = (
-  controller_name == "categories" &&
-  action_name.in?(%w[index edit])
-) || current_page?(new_admin_category_path) ||
-  (params[:id].present? && controller_name == "categories" && current_page?(admin_category_path(params[:id]))) %>
-
-<% is_products_active = (
-  controller_name == "products" &&
-  action_name.in?(%w[index new edit show create update])
-) %>
-
 <% current_category_slug =
   params[:category_id] ||
   (@product&.category&.slug if defined?(@product)) ||
   (@category&.slug if defined?(@category) && !@category.is_a?(ActiveRecord::Relation))
 %>
 
-<% is_product_active = is_products_active %>
+<% is_user_active = controller_name == "users" %>
+<% is_category_active = controller_name == "categories" %>
+<% is_products_active = controller_name == "products" %>
 
 <nav id="sidebar" class="background-panel-admin text-dark vh-100 p-3">
   <div class="d-flex flex-column h-100">
     <a href="<%= admin_dashboard_path %>" class="text-decoration-none mb-4 d-flex align-items-center">
       <i data-feather="activity" class="me-2"></i>
-      <span class="fs-4">TechNova Solutions</span>
+      <span class="fs-4 fw-bold">SIAG</span>
     </a>
 
     <ul class="nav nav-pills flex-column mb-auto">
       <%# === Overview === %>
       <li class="nav-item">
-        <a 
-          class="nav-link text-h1-panel-admin d-flex align-items-center" 
-          data-bs-toggle="collapse" 
-          href="#overviewSubmenu" 
-          role="button"
-          aria-expanded="true"
-          aria-controls="overviewSubmenu"
-        >
+        <a class="nav-link text-h1-panel-admin d-flex align-items-center" href="#overviewSubmenu" role="button">
           <span class="fs-7 text-uppercase"><%= t("overview") %></span>
         </a>
         <div class="collapse show" id="overviewSubmenu">
@@ -57,14 +35,7 @@
 
       <%# === Management === %>
       <li class="nav-item">
-        <a 
-          class="nav-link text-h1-panel-admin d-flex align-items-center" 
-          data-bs-toggle="collapse" 
-          href="#managementSubmenu" 
-          role="button"
-          aria-expanded="true" 
-          aria-controls="managementSubmenu"
-        >
+        <a class="nav-link text-h1-panel-admin d-flex align-items-center" href="#managementSubmenu" role="button">
           <span class="fs-7 text-uppercase"><%= t("management") %></span>
         </a>
         <div class="collapse show" id="managementSubmenu">
@@ -86,7 +57,7 @@
               </li>
             <% end %>
 
-            <%# === Products === %>
+            <%# === Products Submenu === %>
             <li class="nav-item w-100">
               <a 
                 class="nav-link text-h1-panel-admin d-flex align-items-center" 
