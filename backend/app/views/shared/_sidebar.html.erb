@@ -18,7 +18,14 @@
     <ul class="nav nav-pills flex-column mb-auto">
       <%# === Overview === %>
       <li class="nav-item">
-        <a class="nav-link text-h1-panel-admin d-flex align-items-center" href="#overviewSubmenu" role="button">
+        <a 
+          class="nav-link text-h1-panel-admin d-flex align-items-center" 
+          data-bs-toggle="collapse" 
+          href="#overviewSubmenu" 
+          role="button" 
+          aria-expanded="true" 
+          aria-controls="overviewSubmenu"
+        >
           <span class="fs-7 text-uppercase"><%= t("overview") %></span>
         </a>
         <div class="collapse show" id="overviewSubmenu">
@@ -35,7 +42,14 @@
 
       <%# === Management === %>
       <li class="nav-item">
-        <a class="nav-link text-h1-panel-admin d-flex align-items-center" href="#managementSubmenu" role="button">
+        <a 
+          class="nav-link text-h1-panel-admin d-flex align-items-center" 
+          data-bs-toggle="collapse" 
+          href="#managementSubmenu" 
+          role="button" 
+          aria-expanded="true" 
+          aria-controls="managementSubmenu"
+        >
           <span class="fs-7 text-uppercase"><%= t("management") %></span>
         </a>
         <div class="collapse show" id="managementSubmenu">
