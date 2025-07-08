@@ -1,0 +1,2 @@
+[{"name":"Camiseta Algodón","imageUrl":"assets/camiseta.jpg","price":19000},{"name":"Pantalón Jeans","imageUrl":"assets/pantalon.jpg","price":39000},{"name":"Zapatillas Running","imageUrl":"assets/zapatilla running.jpg","price":59000}]
+https://mocki.io/v1/0f5003d9-2ca1-4717-8547-f01ce3092fac
