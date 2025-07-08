@@ -4,6 +4,7 @@ import '../feature/categories/pages/homescreen.dart';
 import '../feature/categories/repositories/category_repository.dart';
 import '../feature/home/pages/homepage.dart';
 import '../feature/profile/pages/profile_page.dart';
+import '../feature/top_sellers/top_sellers_page.dart';
 
 class MainScaffold extends StatefulWidget {
   final CategoryRepository categoryRepository = CategoryRepository();
@@ -21,7 +22,7 @@ class _MainScaffoldState extends State<MainScaffold> {
   final List<Widget> _pages = [
     HomeScreen(categoryRepository: CategoryRepository()),
     const HomePage(),
-    const Placeholder(),
+    const TopSellersPage(),
     const Placeholder(),
     const PerfilPage(),
   ];
