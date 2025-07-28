@@ -21,7 +21,7 @@ class TopSellersBloc extends Bloc<TopSellersEvent, TopSellersState> {
       final url = Uri.parse('https://mocki.io/v1/0f5003d9-2ca1-4717-8547-f01ce3092fac');
       final response = await http.get(url);
       if (response.statusCode == 200) {
-        final List<dynamic> data = json.decode(response.body);
+        final List<dynamic> data = json.decode(utf8.decode(response.bodyBytes));
         final products = data.map((e) => Product.fromJson(e)).toList();
         emit(TopSellersLoaded(products));
       } else {
